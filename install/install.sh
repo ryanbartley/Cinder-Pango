@@ -14,20 +14,20 @@ fi
 PREFIX_BASE_DIR=`pwd`/tmp
 
 PREFIX_LIBZ=${PREFIX_BASE_DIR}/libz_install
-rm -rf ${PREFIX_LIBZ}
-mkdir -p ${PREFIX_LIBZ}
+#rm -rf ${PREFIX_LIBZ}
+#mkdir -p ${PREFIX_LIBZ}
 
 PREFIX_LIBFFI=${PREFIX_BASE_DIR}/libffi_install
-rm -rf ${PREFIX_LIBFFI}
-mkdir -p ${PREFIX_LIBFFI}
+#rm -rf ${PREFIX_LIBFFI}
+#mkdir -p ${PREFIX_LIBFFI}
 
 PREFIX_GETTEXT=${PREFIX_BASE_DIR}/gettext_install
-rm -rf ${PREFIX_GETTEXT}
-mkdir -p ${PREFIX_GETTEXT}
+#rm -rf ${PREFIX_GETTEXT}
+#mkdir -p ${PREFIX_GETTEXT}
 
 PREFIX_GLIB=${PREFIX_BASE_DIR}/glib_install
-rm -rf ${PREFIX_GLIB}
-mkdir -p ${PREFIX_GLIB}
+#rm -rf ${PREFIX_GLIB}
+#mkdir -p ${PREFIX_GLIB}
 
 PREFIX_PANGO=${PREFIX_BASE_DIR}/pango_install
 rm -rf ${PREFIX_PANGO}
@@ -45,7 +45,7 @@ CINDER_FREETYPE_INCLUDE_PATH=${CINDER_DIR}/include/freetype
 ## cinder paths for cairo
 ##########################
 
-CAIRO_BASE_DIR="../../Cairo"
+CAIRO_BASE_DIR=`pwd`/../../Cairo
 CAIRO_LIB_PATH="${CAIRO_BASE_DIR}/lib/${lower_case}"
 CAIRO_INCLUDE_PATH="${CAIRO_BASE_DIR}/include/${lower_case}/cairo"
 # make sure it's the correct version
@@ -55,9 +55,9 @@ echo "Setting up cairo flags..."
 ## cinder paths for harfbuzz
 #############################
 
-HARFBUZZ_BASE_DIR="../../Cinder-Harfbuzz"
-HARFBUZZ_LIB_PATH="${HARFBUZZ_BASE_DIR}/lib/${lower_case}"
-HARFBUZZ_INCLUDE_PATH="${HARFBUZZ_BASE_DIR}/include/${lower_case}"
+HARFBUZZ_BASE_DIR=`pwd`/../../Cinder-Harfbuzz
+HARFBUZZ_LIB_PATH="${HARFBUZZ_BASE_DIR}/lib_p/${lower_case}"
+HARFBUZZ_INCLUDE_PATH="${HARFBUZZ_BASE_DIR}/include_p/${lower_case}"
 echo "Setting up Harfbuzz flags..."
 
 #########################
@@ -66,12 +66,12 @@ echo "Setting up Harfbuzz flags..."
 
 FINAL_PATH=`pwd`/..
 FINAL_LIB_PATH=${FINAL_PATH}/lib/${lower_case}
-rm -rf ${FINAL_LIB_PATH}
-mkdir -p ${FINAL_LIB_PATH}
+#rm -rf ${FINAL_LIB_PATH}
+#mkdir -p ${FINAL_LIB_PATH}
  
 FINAL_INCLUDE_PATH=${FINAL_PATH}/include/${lower_case}
-rm -rf ${FINAL_INCLUDE_PATH}
-mkdir -p ${FINAL_INCLUDE_PATH}
+#rm -rf ${FINAL_INCLUDE_PATH}
+#mkdir -p ${FINAL_INCLUDE_PATH}
 
 #########################
 ## different archs
@@ -81,12 +81,14 @@ buildOSX()
 {
   echo Building OSX...
 
-  buildZlib
-  buildLibffi
-  buildGettext
+  #buildZlib
+  #buildLibffi
+  #buildGettext
 	export LDFLAGS="${LDFLAGS} -L${PREFIX_GETTEXT}/lib -lintl -lgettextpo -lasprintf"
-  buildGlib 
-  buildHarfbuzz
+  #buildGlib 
+  #buildHarfbuzzForPango
+  export HARFBUZZ_CFLAGS="-I${HARFBUZZ_INCLUDE_PATH}/harfbuzz"
+  export HARFBUZZ_LIBS="-L${HARFBUZZ_LIB_PATH} -lharfbuzz -lharfbuzz-gobject"
   buildPango
 }
 
@@ -120,17 +122,10 @@ downloadZlib()
 downloadLibffi()
 {
 	echo Downloading libffi...
-  if [ "${lower_case}" = "ios" ]; then 
-    curl ftp://sourceware.org/pub/libffi/libffi-3.2.tar.gz -o libffi.tar.gz
-    tar -xf libffi.tar.gz
-    mv libffi-* libffi
-    rm libffi.tar.gz 
-  else 
-    curl ftp://sourceware.org/pub/libffi/libffi-3.2.1.tar.gz -o libffi.tar.gz
-    tar -xf libffi.tar.gz
-    mv libffi-* libffi
-    rm libffi.tar.gz
-  fi
+  curl ftp://sourceware.org/pub/libffi/libffi-3.2.1.tar.gz -o libffi.tar.gz
+  tar -xf libffi.tar.gz
+  mv libffi-* libffi
+  rm libffi.tar.gz
   echo Finished Downloading libffi...
 }
 
@@ -165,7 +160,11 @@ downloadPango()
 buildZlib()
 {
   cd zlib
+  
+  echo "==================================================================="
   echo "Building and installing zlib, ${PREFIX_LIBZ}"
+  echo "==================================================================="
+  
   PREFIX=${PREFIX_LIBZ}
  
   ./configure --prefix=${PREFIX}
@@ -180,7 +179,11 @@ buildZlib()
 buildLibffi()
 {
   cd libffi
+  
+  echo "==================================================================="
   echo "Building and installing libffi"
+  echo "==================================================================="
+  
   PREFIX=${PREFIX_LIBFFI}
   HOST=$1
   if [ -z "$HOST" ]; then
@@ -200,7 +203,11 @@ buildLibffi()
 buildGettext()
 {
   cd gettext
+  
+  echo "==================================================================="
   echo "Building and installing gettext"
+  echo "==================================================================="
+  
   PREFIX=${PREFIX_GETTEXT}
   HOST=$1
   if [ -z "${HOST}"]; then
@@ -219,7 +226,11 @@ buildGettext()
 buildGlib()
 {
   cd glib
+  
+  echo "==================================================================="
   echo "Building glib, and installing $1"
+  echo "==================================================================="
+  
   PREFIX=$PREFIX_GLIB
   HOST=$1
   echo "Passed in $HOST"
@@ -240,17 +251,35 @@ buildGlib()
   cd ..
 }
 
+buildHarfbuzzForPango()
+{
+  # need to test for existence and quit
+  cd ${HARFBUZZ_BASE_DIR}/install
+  
+  echo "==================================================================="
+  echo "Building Harfbuzz"
+  echo "==================================================================="
+  
+  ./install.sh ${lower_case} --with-pango
+
+  cd ../../Cinder-Pango/install/tmp
+}
+
 buildPango()
 {
   cd pango
+  echo "==================================================================="
   echo "Building Pango, and installing $1"
-  PREFIX=$PREFIX_Pango
+  echo "==================================================================="
+  PREFIX=$PREFIX_PANGO
   HOST=$1
   OPTIONS=$2
   echo "Passed in $HOST"
-
-  ./configure --disable-shared --enable-static=yes --prefix=${PREFIX} --enable-gtk-doc-html=no --with-gobject=yes --with-cairo=yes --with-fontconfig=yes --with-freetype=yes ${OPTIONS}
-
+ 
+  ./configure --disable-shared --enable-static=yes --prefix=${PREFIX} --enable-gtk-doc-html=no --with-cairo=yes ${OPTIONS}
+  
+  automake --add-missing 
+  
   make -j 6
   make install
   make clean
@@ -261,14 +290,31 @@ buildPango()
   cd ..
 }
 
-rm -rf tmp
-mkdir tmp
+#########################
+## echo the flags
+#########################
+
+echoFlags()
+{
+  echo "==================================================================="
+  echo "Environment for ${lower_case}..."
+  echo -e "\t CXX:      ${CXX}"
+  echo -e "\t CC:       ${CC}"
+  echo -e "\t CFLAGS:   ${CFLAGS}"
+  echo -e "\t CXXFLAGS: ${CXXFLAGS}"
+	echo -e "\t CPPFLAGS: ${CPPFLAGS}"
+  echo -e "\t LDFLAGS:  ${LDFLAGS}"
+  echo "==================================================================="
+}
+
+#rm -rf tmp
+#mkdir tmp
 cd tmp
 
-downloadZlib
-downloadLibffi
-downloadGettext
-downloadGlib
+#downloadZlib
+#downloadLibffi
+#downloadGettext
+#downloadGlib
 downloadPango
 
 declare -a config_settings=("debug" "release")
@@ -281,16 +327,19 @@ export LIBFFI_CFLAGS="-I${PREFIX_LIBFFI}/lib/libffi-3.2.1/include/"
 export FREETYPE_LIBS="-L${CINDER_LIB_DIR} -lcinder"
 export FREETYPE_CFLAGS="-I${CINDER_FREETYPE_INCLUDE_PATH}"
 export GLIB_CFLAGS="-I${PREFIX_GLIB}/include/glib-2.0 -I${PREFIX_GLIB}/lib/glib-2.0/include"
-export GLIB_LIBS="-L${PREFIX_GLIB}/lib -lglib-2.0"
+export GLIB_LIBS="-L${PREFIX_GLIB}/lib -lglib-2.0 -lgobject-2.0"
 export GOBJECT_CFLAGS="-I${PREFIX_GLIB}/include/glib-2.0 -I${PREFIX_GLIB}/lib/glib-2.0/include"
 export GOBJECT_LIBS="-L${PREFIX_GLIB}/lib -lgobject-2.0"
 export CAIRO_CFLAGS="-I${CAIRO_INCLUDE_PATH}"
-export CAIRO_LIBS="-L${CAIRO_LIB_PATH} -lcairo"
+export CAIRO_LIBS="-L${CAIRO_LIB_PATH} -lcairo -lpixman-1 -lpng -L${PREFIX_LIBZ}/lib -lz"
+export PKG_CONFIG_PATH="${CAIRO_BASE_DIR}/install/tmp/cairo_install/lib/pkgconfig:${CAIRO_BASE_DIR}/install/tmp/libpng_install/lib/pkgconfig:${CAIRO_BASE_DIR}/install/tmp/pixman_install/lib/pkgconfig:${PREFIX_GLIB}/lib/pkgconfig"
+
+echo ${PKG_CONFIG_PATH}
 
 echo "Building pango for {$lower_case}"
 if [ "${lower_case}" = "mac" ] || [ "${lower_case}" = "macosx" ];
 then
-  export PATH="${PATH}:${PREFIX_GETTEXT}/bin"
+  export PATH="${PATH}:${PREFIX_GETTEXT}/bin:${PREFIX_GLIB}/bin"
   
 	export CPPFLAGS="${CPPFLAGS} -I${PREFIX_GETTEXT}/include"	
 	export CXX="$(xcrun -find -sdk macosx clang++) -Wno-enum-conversion"
@@ -299,16 +348,8 @@ then
 	export CXXFLAGS="-O3 -pthread ${CXXFLAGS}"
 	export LDFLAGS="-stdlib=libc++ -framework AppKit -framework CoreText -framework CoreFoundation -framework CoreGraphics  -framework Carbon -L/usr/local/lib ${LDFLAGS}"
 	
-	echo Environment for Mac OSX...
-	echo -e "\t PATH: 		${PATH}"
-	echo -e "\t CXX:      ${CXX}"
-	echo -e "\t CC:       ${CC}"
-	echo -e "\t CFLAGS:   ${CFLAGS}"
-	echo -e "\t CPPFLAGS: ${CPPFLAGS}"
-	echo -e "\t CXXFLAGS: ${CXXFLAGS}"
-	echo -e "\t LDFLAGS:  ${LDFLAGS}"
-
-	buildOSX
+	echoFlags
+  buildOSX
 elif [ "${lower_case}" = "linux" ];
 then
   export PATH="${PATH}:${PREFIX_GETTEXT}/bin"
@@ -318,16 +359,8 @@ then
 	export CFLAGS="-O3 -pthread -I${PREFIX_GETTEXT}/include ${CFLAGS}"
   export CPPFLAGS="${CPPFLAGS} -I${PREFIX_GETTEXT}/include"
 	export CXXFLAGS="-O3 -pthread ${CXXFLAGS}"
-  
-	echo Environment for Linux...
-	echo -e "\t PATH:     ${PATH}"
-	echo -e "\t CXX:      ${CXX}"
-	echo -e "\t CC:       ${CC}"
-	echo -e "\t CFLAGS:   ${CFLAGS}"
-	echo -e "\t CPPFLAGS: ${CPPFLAGS}"
-	echo -e "\t CXXFLAGS: ${CXXFLAGS}"
-	echo -e "\t LDFLAGS:  ${LDFLAGS}"
-
+ 
+  echoFlags 
 	buildLinux
 else
   echo "Unkown selection: ${1}"
