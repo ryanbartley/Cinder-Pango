@@ -21,4 +21,4 @@ The licensing of Pango is more complicated than Cinder, which is why the block e
 
 >The license only requires software under the LGPL be modifiable by end users via source code availability. For proprietary software, code under the LGPL is usually used in the form of a shared library such as a DLL, so that there is a clear separation between the proprietary and LGPL components.
 
-...Basically, you have to modify your build and include. In the future, I hope to make this part "easy" for the end user but right now, you're on your own when using this block. As mentioned above, this license frustratingly makes this block nearly unusable on iOS. However, I would like to try and build support in for it.
+...Basically, you have to modify your build and include structure for any project you use this with to support dynamic libraries. In the future, I hope to make this part "easy" for the end user but right now, you're on your own when using this block. As mentioned above, this license frustratingly makes this block nearly unusable on iOS. However, I would like to try and build support in for it.
