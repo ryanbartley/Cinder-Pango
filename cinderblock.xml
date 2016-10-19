@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cinder>
+<block
+	name="Cinder-Pango"
+	id="org.libcinder.pango"
+	author="Cinder Project, Ryan Bartley"
+	summary="Pango is a library for laying out and rendering of text, with an emphasis on internationalization."
+	core="true"
+	>
+	<supports os="msw" />
+	<supports os="macosx" />
+	
+	<requires>org.libcinder.cairo</requires>
+	
+	<platform os="macosx">
+		<staticLibrary>../Cinder-Harfbuzz/lib_p/macosx/libharfbuzz.a</staticLibrary>
+		<staticLibrary>../Cinder-Harfbuzz/lib_p/macosx/libharfbuzz-gobject.a</staticLibrary>	
+		<headerPattern>../Cinder-Harfbuzz/include_p/macosx/harfbuzz/*.h</headerPattern>	
+		<includePath system="true">../Cinder-Harfbuzz/include_p/macosx/harfbuzz</includePath>
+		<staticLibrary>lib/macosx/libgio-2.0.a</staticLibrary>	
+		<staticLibrary>lib/macosx/libglib-2.0.a</staticLibrary>	
+		<staticLibrary>lib/macosx/libgmodule-2.0.a</staticLibrary>	
+		<staticLibrary>lib/macosx/libgobject-2.0.a</staticLibrary>	
+		<staticLibrary>lib/macosx/libgthread-2.0.a</staticLibrary>	
+		<staticLibrary>lib/macosx/libpango-1.0.a</staticLibrary>	
+		<staticLibrary>lib/macosx/libpangocairo-1.0.a</staticLibrary>	
+		<staticLibrary>lib/macosx/libpangooft2-1.0.a</staticLibrary>	
+		<headerPattern>include/macosx/pango-1.0/pango/*.h</headerPattern>	
+		<includePath system="true">include/macosx/pango-1.0/</includePath>
+		<includePath system="true">include/macosx/glib-2.0/</includePath>
+	</platform>
+	<platform os="msw">
+		<staticLibrary>../Cinder-Harfbuzz/lib_p/msw/harfbuzz.lib</staticLibrary>
+		<staticLibrary>../Cinder-Harfbuzz/lib_p/msw/harfbuzz-gobject.lib</staticLibrary>	
+		<headerPattern>../Cinder-Harfbuzz/include_p/msw/harfbuzz/*.h</headerPattern>	
+		<includePath system="true">../Cinder-Harfbuzz/include_p/msw/harfbuzz</includePath>
+		<staticLibrary>lib/msw/libgio-2.0.a</staticLibrary>	
+		<staticLibrary>lib/msw/libglib-2.0.a</staticLibrary>	
+		<staticLibrary>lib/msw/libgmodule-2.0.a</staticLibrary>	
+		<staticLibrary>lib/msw/libgobject-2.0.a</staticLibrary>	
+		<staticLibrary>lib/msw/libgthread-2.0.a</staticLibrary>	
+		<staticLibrary>lib/msw/libpango-1.0.a</staticLibrary>	
+		<staticLibrary>lib/msw/libpangocairo-1.0.a</staticLibrary>	
+		<staticLibrary>lib/msw/libpangooft2-1.0.a</staticLibrary>	
+		<headerPattern>include/msw/pango-1.0/pango/*.h</headerPattern>	
+		<includePath system="true">include/msw/pango-1.0/</includePath>
+		<includePath system="true">include/msw/glib-2.0/</includePath>	
+	</platform>
+</block>
+</cinder>
