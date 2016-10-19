@@ -24,9 +24,17 @@
 		<staticLibrary>lib/macosx/libgthread-2.0.a</staticLibrary>	
 		<staticLibrary>lib/macosx/libpango-1.0.a</staticLibrary>	
 		<staticLibrary>lib/macosx/libpangocairo-1.0.a</staticLibrary>	
-		<staticLibrary>lib/macosx/libpangooft2-1.0.a</staticLibrary>	
-		<headerPattern>include/macosx/pango-1.0/pango/*.h</headerPattern>	
-		<includePath system="true">include/macosx/pango-1.0/</includePath>
+    	<staticLibrary>lib/macosx/libpangoft2-1.0.a</staticLibrary>	
+    	<staticLibrary>lib/macosx/libintl.a</staticLibrary>
+    	<staticLibrary>lib/macosx/libgettextpo.a</staticLibrary>
+    	<staticLibrary>lib/macosx/libasprintf.a</staticLibrary>
+    	<staticLibrary>lib/macosx/libfontconfig.a</staticLibrary>
+    	<staticLibrary>lib/macosx/libffi.a</staticLibrary>
+    	<staticLibrary absolute="true">-liconv</staticLibrary>
+    	<staticLibrary absolute="true">-lexpat</staticLibrary>
+    	<headerPattern>include/macosx/pango-1.0/pango/*.h</headerPattern>	
+    	<includePath system="true">include/macosx/</includePath>
+    	<includePath system="true">include/macosx/pango-1.0/</includePath>
 		<includePath system="true">include/macosx/glib-2.0/</includePath>
 	</platform>
 	<platform os="msw">

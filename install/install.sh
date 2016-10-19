@@ -17,6 +17,10 @@ PREFIX_LIBZ=${PREFIX_BASE_DIR}/libz_install
 rm -rf ${PREFIX_LIBZ}
 mkdir -p ${PREFIX_LIBZ}
 
+PREFIX_FONTCONFIG=${PREFIX_BASE_DIR}/fontconfig_install
+rm -rf ${PREFIX_FONTCONFIG}
+mkdir -p ${PREFIX_FONTCONFIG}
+
 PREFIX_LIBFFI=${PREFIX_BASE_DIR}/libffi_install
 rm -rf ${PREFIX_LIBFFI}
 mkdir -p ${PREFIX_LIBFFI}
@@ -32,14 +36,6 @@ mkdir -p ${PREFIX_GLIB}
 PREFIX_PANGO=${PREFIX_BASE_DIR}/pango_install
 rm -rf ${PREFIX_PANGO}
 mkdir -p ${PREFIX_PANGO}
-
-#############################
-## cinder paths for freetype
-#############################
-
-CINDER_DIR=`pwd`/../../..
-CINDER_LIB_DIR=${CINDER_DIR}/lib/${lower_case}/Release
-CINDER_FREETYPE_INCLUDE_PATH=${CINDER_DIR}/include/freetype
 
 ##########################
 ## cinder paths for cairo
@@ -83,12 +79,25 @@ buildOSX()
 
   buildZlib
   buildLibffi
+  export LDFLAGS="${LDFLAGS} -framework AppKit -framework CoreText -framework CoreFoundation -framework CoreGraphics -framework Carbon"
+ 
   buildGettext
 	export LDFLAGS="${LDFLAGS} -L${PREFIX_GETTEXT}/lib -lintl -lgettextpo -lasprintf"
   buildGlib 
+
+  downloadFontconfig
+  buildFontconfig
+  export FONTCONFIG_CFLAGS="-I${PREFIX_FONTCONFIG}/include"
+  export FONTCONFIG_LIBS="-L${PREFIX_FONTCONFIG}/lib -lfontconfig"
+  export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:${PREFIX_FONTCONFIG}/lib/pkgconfig:${PREFIX_BASE_DIR}/freetype/pkgconfig"
+
   buildHarfbuzzForPango
   export HARFBUZZ_CFLAGS="-I${HARFBUZZ_INCLUDE_PATH}/harfbuzz"
   export HARFBUZZ_LIBS="-L${HARFBUZZ_LIB_PATH} -lharfbuzz -lharfbuzz-gobject"
+
+  createFreetypePC
+  export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:${PREFIX_BASE_DIR}/freetype/pkgconfig"  
+  
   buildPango
 }
 
@@ -99,11 +108,14 @@ buildLinux()
   buildZlib
   buildLibffi
   buildGettext
-	export LDFLAGS="${LDFLAGS} -L${PREFIX_GETTEXT}/lib -lgettextpo -lasprintf"
+	
+  export LDFLAGS="${LDFLAGS} -L${PREFIX_GETTEXT}/lib -lgettextpo -lasprintf"
   buildGlib 
+  
   buildHarfbuzzForPango 
   export HARFBUZZ_CFLAGS="-I${HARFBUZZ_INCLUDE_PATH}/harfbuzz"
   export HARFBUZZ_LIBS="-L${HARFBUZZ_LIB_PATH} -lharfbuzz -lharfbuzz-gobject"
+  
   buildPango
 }
 
@@ -119,6 +131,16 @@ downloadZlib()
   mv zlib-* zlib
   rm zlib.tar.gz
   echo Finished Downloading zlib...
+}
+
+downloadFontconfig()
+{
+  echo Downloading fontconfig...
+  curl https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.12.1.tar.gz -o fontconfig.tar.gz
+  tar -xf fontconfig.tar.gz
+  mv fontconfig-* fontconfig
+  rm fontconfig.tar.gz
+  echo Finished Downloading fontconfig...
 }
 
 downloadLibffi()
@@ -147,6 +169,7 @@ downloadGlib()
 	curl -o glib.tar.xz ftp://ftp.gnome.org/pub/GNOME/sources/glib/2.50/glib-2.50.0.tar.xz
 	tar xf glib.tar.xz
 	mv glib-* glib
+  rm glib.tar.xz
 	echo Finished downloading glib...
 }
 
@@ -156,7 +179,26 @@ downloadPango()
 	curl -o pango.tar.xz http://ftp.gnome.org/pub/GNOME/sources/pango/1.40/pango-1.40.0.tar.xz
 	tar xf pango.tar.xz
 	mv pango-* pango
+  rm pango.tar.xz
   echo Finished downloading Pango...
+}
+
+createFreetypePC()
+{
+  mkdir -p freetype/pkgconfig
+  echo "prefix=`pwd`/../../../..
+  exec_prefix=${prefix}
+  libdir=${prefix}/lib/macosx/Release
+  includedir=/${prefix}/include/freetype
+
+  Name: FreeType 2
+  URL: http://freetype.org
+  Description: A free, high-quality, and portable font engine.
+  Version: 18.6.12
+  Requires:
+  Requires.private: 
+  Libs: -L${libdir} -lcinder
+  Cflags: -I${includedir}" >> freetype/pkgconfig/freetype2.pc
 }
 
 buildZlib()
@@ -178,6 +220,28 @@ buildZlib()
   cd ..
 }
 
+buildFontconfig()
+{
+  cd fontconfig
+
+  echo "==================================================================="
+  echo "Building and installing fontconfig, ${PREFIX_FONTCONFIG}"
+  echo "==================================================================="
+  
+  PREFIX=${PREFIX_FONTCONFIG}
+
+  ./configure --prefix=${PREFIX} --enable-static=yes --enable-shared=no
+
+  make -j 6
+  make install
+  make clean
+ 
+  cp -r ${PREFIX}/include/* ${FINAL_INCLUDE_PATH}
+  cp ${PREFIX}/lib/*.a ${FINAL_LIB_PATH}
+
+  cd ..
+}
+
 buildLibffi()
 {
   cd libffi
@@ -187,17 +251,14 @@ buildLibffi()
   echo "==================================================================="
   
   PREFIX=${PREFIX_LIBFFI}
-  HOST=$1
-  if [ -z "$HOST" ]; then
-    ./configure --prefix=${PREFIX}
-  else
-    #python ./generate-darwin-source-and-headers.py
-    ./configure --prefix=${PREFIX} --host=${HOST}
-  fi
+    
+  ./configure --prefix=${PREFIX}
 
   make -j 6
   make install
   make clean
+
+  cp ${PREFIX}/lib/*.a ${FINAL_LIB_PATH}
 
   cd ..
 }
@@ -222,6 +283,9 @@ buildGettext()
   make install
   make clean
 
+  cp -r ${PREFIX}/include/* ${FINAL_INCLUDE_PATH}
+  cp ${PREFIX}/lib/*.a ${FINAL_LIB_PATH}
+  
   cd ..
 }
 
@@ -249,6 +313,7 @@ buildGlib()
 
   cp -r ${PREFIX}/include/* ${FINAL_INCLUDE_PATH}
   cp ${PREFIX}/lib/*.a ${FINAL_LIB_PATH}
+  cp ${PREFIX}/lib/glib-2.0/include/* ${FINAL_INCLUDE_PATH}/glib-2.0
 
   cd ..
 }
@@ -325,9 +390,7 @@ declare -a config_paths=("/Debug" "/Release")
 export ZLIB_LIBS="-L${PREFIX_LIBZ}/lib -lz"
 export ZLIB_CFLAGS="-I${PREFIX_LIBZ}/include"
 export LIBFFI_LIBS="-L${PREFIX_LIBFFI}/lib -lffi"
-export LIBFFI_CFLAGS="-I${PREFIX_LIBFFI}/lib/libffi-3.2.1/include/"
-export FREETYPE_LIBS="-L${CINDER_LIB_DIR} -lcinder"
-export FREETYPE_CFLAGS="-I${CINDER_FREETYPE_INCLUDE_PATH}"
+export LIBFFI_CFLAGS="-I${PREFIX_LIBFFI}/lib/libffi-3.2.1/include"
 export GLIB_CFLAGS="-I${PREFIX_GLIB}/include/glib-2.0 -I${PREFIX_GLIB}/lib/glib-2.0/include"
 export GLIB_LIBS="-L${PREFIX_GLIB}/lib -lglib-2.0 -lgobject-2.0"
 export GOBJECT_CFLAGS="-I${PREFIX_GLIB}/include/glib-2.0 -I${PREFIX_GLIB}/lib/glib-2.0/include"
@@ -348,8 +411,24 @@ then
 	export CC="$(xcrun -find -sdk macosx clang) -Wno-enum-conversion"
 	export CFLAGS="-O3 -pthread -I${PREFIX_GETTEXT}/include ${CFLAGS}"
 	export CXXFLAGS="-O3 -pthread ${CXXFLAGS}"
-	export LDFLAGS="-stdlib=libc++ -framework AppKit -framework CoreText -framework CoreFoundation -framework CoreGraphics  -framework Carbon -L/usr/local/lib ${LDFLAGS}"
-	
+	export LDFLAGS="-stdlib=libc++ -L/usr/local/lib ${LDFLAGS}"
+
+  ##################################
+  ## we use cinder to link freetype
+  ##################################
+
+  CINDER_DIR=`pwd`/../../../..
+  CINDER_LIB_DIR=${CINDER_DIR}/lib/${lower_case}/Release
+  CINDER_FREETYPE_INCLUDE_PATH=${CINDER_DIR}/include/
+
+  if [ ! -f "${CINDER_LIB_DIR}/libcinder.a" ]; then
+    echo "Need to build release version of cinder to run this install. Cairo needs Freetype. Exiting!"
+    exit
+  fi
+
+  export FREETYPE_LIBS="-L${CINDER_LIB_DIR} -lcinder"
+  export FREETYPE_CFLAGS="-I${CINDER_FREETYPE_INCLUDE_PATH}/freetype -I${CINDER_FREETYPE_INCLUDE_PATH}"
+  
 	echoFlags
   buildOSX
 elif [ "${lower_case}" = "linux" ];
@@ -361,6 +440,22 @@ then
 	export CFLAGS="-O3 -pthread -I${PREFIX_GETTEXT}/include ${CFLAGS}"
   export CPPFLAGS="${CPPFLAGS} -I${PREFIX_GETTEXT}/include"
 	export CXXFLAGS="-O3 -pthread ${CXXFLAGS}"
+  
+  ##################################
+  ## we use cinder to link freetype
+  ##################################
+
+  CINDER_DIR=`pwd`/../../../..
+  CINDER_LIB_DIR=${CINDER_DIR}/lib/${lower_case}/x86_64/ogl/Release
+  CINDER_FREETYPE_INCLUDE_PATH=${CINDER_DIR}/include/
+
+  if [ ! -f "${CINDER_LIB_DIR}/libcinder.a" ]; then
+    echo "Need to build release version of cinder to run this install. Cairo needs Freetype. Exiting!"
+    exit
+  fi
+
+  export FREETYPE_LIBS="-L${CINDER_LIB_DIR} -lcinder"
+  export FREETYPE_CFLAGS="-I${CINDER_FREETYPE_INCLUDE_PATH}/freetype -I${CINDER_FREETYPE_INCLUDE_PATH}"
  
   echoFlags 
 	buildLinux

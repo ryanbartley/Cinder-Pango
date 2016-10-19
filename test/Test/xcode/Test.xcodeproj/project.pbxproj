@@ -1,0 +1,697 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		006D720419952D00008149E2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006D720219952D00008149E2 /* AVFoundation.framework */; };
+		006D720519952D00008149E2 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006D720319952D00008149E2 /* CoreMedia.framework */; };
+		0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091D8F80E81B9330029341E /* OpenGL.framework */; };
+		00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784AF0FF439BC000DE1D7 /* Accelerate.framework */; };
+		00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */; };
+		00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
+		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
+		00B9955A1B128DF400A5C623 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995581B128DF400A5C623 /* IOKit.framework */; };
+		00B9955B1B128DF400A5C623 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995591B128DF400A5C623 /* IOSurface.framework */; };
+		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		B0E9D1743A2140F698BA3D58 /* pangoft2.h in Headers */ = {isa = PBXBuildFile; fileRef = E035A0008FD546D39FFB1C8B /* pangoft2.h */; };
+		1BC8428E919849E387658FE3 /* pangofc-fontmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 396D8C7449F344ACA4E88680 /* pangofc-fontmap.h */; };
+		CEE1C2F7AE6144A3B98BCB1A /* pangofc-font.h in Headers */ = {isa = PBXBuildFile; fileRef = 54C50C17BF8E4EE08EC02D56 /* pangofc-font.h */; };
+		B78EBE448A804E339429F3EB /* pangofc-decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = FEC7210C591A451DB0EACF0F /* pangofc-decoder.h */; };
+		61C671CEAABF47688B4EF6AA /* pangocoretext.h in Headers */ = {isa = PBXBuildFile; fileRef = 395F68C7D9454DB4BB087A8C /* pangocoretext.h */; };
+		FB88CE6330FF4966B70A292D /* pangocairo.h in Headers */ = {isa = PBXBuildFile; fileRef = 610E9627952B4C93A5EB2907 /* pangocairo.h */; };
+		B75C897767004BCD9444D776 /* pango.h in Headers */ = {isa = PBXBuildFile; fileRef = A13F766E977B449FB2F0AE8C /* pango.h */; };
+		C16638249EE946058A2A2C69 /* pango-utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 46E372F1D03A4FA9B2B35750 /* pango-utils.h */; };
+		2FEDAD050F1541D3BCB03A70 /* pango-types.h in Headers */ = {isa = PBXBuildFile; fileRef = 67D2D896AD1B4F2BB7461E0C /* pango-types.h */; };
+		60EFE347BE2443D98977AA95 /* pango-tabs.h in Headers */ = {isa = PBXBuildFile; fileRef = 2589886210414E4EAC62F8B0 /* pango-tabs.h */; };
+		F2CBD37B776747C496BFE8FF /* pango-script.h in Headers */ = {isa = PBXBuildFile; fileRef = 30EE569771C14B03867AA51C /* pango-script.h */; };
+		7CDC880EE0FF45AFB8BB7AAD /* pango-renderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 18B8066406AC44289F9C6183 /* pango-renderer.h */; };
+		7FE117DD7A74460E88108EC2 /* pango-ot.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A4E36B0071B4077B27B9243 /* pango-ot.h */; };
+		E25C843A417E4F36A31466D5 /* pango-modules.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CD752AF12DD4524AB1945C2 /* pango-modules.h */; };
+		C7CF618371A14C138A031D47 /* pango-matrix.h in Headers */ = {isa = PBXBuildFile; fileRef = B1138F55D0734D5285617EE2 /* pango-matrix.h */; };
+		65E7C195D9E64CB58B31F947 /* pango-layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 75E7255D239D4A58BDDA3894 /* pango-layout.h */; };
+		30D772C5BC064F2391638555 /* pango-language.h in Headers */ = {isa = PBXBuildFile; fileRef = A385FB430A2249819FBCDAEF /* pango-language.h */; };
+		F212DA09C2354F35B8A956D6 /* pango-item.h in Headers */ = {isa = PBXBuildFile; fileRef = A2C6EE1BC1FE418FB7B74696 /* pango-item.h */; };
+		02F8A4E27C4B4AB0911DE5AD /* pango-gravity.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C57AA90860B4F05A1704D22 /* pango-gravity.h */; };
+		C8FD718D76AF4B69B842199B /* pango-glyph.h in Headers */ = {isa = PBXBuildFile; fileRef = C7D189B486264240BB167554 /* pango-glyph.h */; };
+		E21395B59ABC450B930F0B8C /* pango-glyph-item.h in Headers */ = {isa = PBXBuildFile; fileRef = 63A537AFA4B847F0A257F68C /* pango-glyph-item.h */; };
+		2C87BFBA80EE4FC59E5A44D1 /* pango-fontset.h in Headers */ = {isa = PBXBuildFile; fileRef = DA8C8B5787434A5EBEFE1C36 /* pango-fontset.h */; };
+		A3E8E69B7E334FDBBAFEF727 /* pango-fontmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 37B30BFBEA214883BBC33706 /* pango-fontmap.h */; };
+		B4622D04F11444478F6A615D /* pango-font.h in Headers */ = {isa = PBXBuildFile; fileRef = C65DBD598B124998975779B6 /* pango-font.h */; };
+		DF9C2655568349C0B6158C94 /* pango-features.h in Headers */ = {isa = PBXBuildFile; fileRef = 5872826C0659445B98252C5C /* pango-features.h */; };
+		274C1C6D156C4D24ADE4BC97 /* pango-enum-types.h in Headers */ = {isa = PBXBuildFile; fileRef = FE9A3EE1269A42A19D1CC07D /* pango-enum-types.h */; };
+		4B04BEEEF45344E98EEF87BF /* pango-engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 774F90557B8C482EA3744EF2 /* pango-engine.h */; };
+		946FA4D4EBEB4680AC9AEC52 /* pango-coverage.h in Headers */ = {isa = PBXBuildFile; fileRef = A8B2956987A44607A632C23A /* pango-coverage.h */; };
+		9ADFD33E0B734D8D831138FA /* pango-context.h in Headers */ = {isa = PBXBuildFile; fileRef = CFB1AEC5D6264A63ACEFAE6C /* pango-context.h */; };
+		2FD730A0B8CD4117B170A5FD /* pango-break.h in Headers */ = {isa = PBXBuildFile; fileRef = C6359B78469D41C7B0ED4989 /* pango-break.h */; };
+		12B823408AB2484B9CEE9C02 /* pango-bidi-type.h in Headers */ = {isa = PBXBuildFile; fileRef = 870489F85D5A4CDCBF0F2F9B /* pango-bidi-type.h */; };
+		A2F02D5A5BCC4FC7B7C4FA65 /* pango-attributes.h in Headers */ = {isa = PBXBuildFile; fileRef = B59112EA639E45A88E39DBA6 /* pango-attributes.h */; };
+		4F42B7B74C1C49BCB451B1DE /* hb.h in Headers */ = {isa = PBXBuildFile; fileRef = 140B5874FF1A428E9F2B7E78 /* hb.h */; };
+		3D39CF60E1844BCAB4179E58 /* hb-version.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F859B9726654A2789306053 /* hb-version.h */; };
+		80802D162CBF4CCD996966CC /* hb-unicode.h in Headers */ = {isa = PBXBuildFile; fileRef = 400A019F1E9647F4911D6ECC /* hb-unicode.h */; };
+		411C825E60904C59861BECAD /* hb-shape.h in Headers */ = {isa = PBXBuildFile; fileRef = 42795557760D430596F3AC67 /* hb-shape.h */; };
+		B5DD424A8F3046678DF5C170 /* hb-shape-plan.h in Headers */ = {isa = PBXBuildFile; fileRef = CD2F3B066D9845D88424F647 /* hb-shape-plan.h */; };
+		358709AE2B454F6DA1417B97 /* hb-set.h in Headers */ = {isa = PBXBuildFile; fileRef = DBCAD86D60EE4D9B9597F792 /* hb-set.h */; };
+		6F3F6E94DF364E909F0826B8 /* hb-ot.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EE5C5FEEC644A2B9D6E408F /* hb-ot.h */; };
+		3C2FE0C7D67047D8AFC12E0A /* hb-ot-tag.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BFD8F827CE04DCA8B05D474 /* hb-ot-tag.h */; };
+		41477AC12ADE4A78B3221D50 /* hb-ot-shape.h in Headers */ = {isa = PBXBuildFile; fileRef = EA993D0D34044A8F98BCA9B7 /* hb-ot-shape.h */; };
+		5006ABC23012455F8871134C /* hb-ot-layout.h in Headers */ = {isa = PBXBuildFile; fileRef = D17E97647D26470F828F27A8 /* hb-ot-layout.h */; };
+		8FB609E20B18469EB6A81034 /* hb-ot-font.h in Headers */ = {isa = PBXBuildFile; fileRef = D32B1B9B9D3243CA93CFC5EB /* hb-ot-font.h */; };
+		903BB3E69CC841E0A99BAD93 /* hb-gobject.h in Headers */ = {isa = PBXBuildFile; fileRef = 303C0AB54EB9480FA2C6DD54 /* hb-gobject.h */; };
+		699372BB69F842EF82FEE60C /* hb-gobject-structs.h in Headers */ = {isa = PBXBuildFile; fileRef = BD49227BBDFD4C0DA5140926 /* hb-gobject-structs.h */; };
+		3403FEDB72204D28B8630713 /* hb-gobject-enums.h in Headers */ = {isa = PBXBuildFile; fileRef = C1C7F5E747B24A75B25F1D51 /* hb-gobject-enums.h */; };
+		409E266BF40E4AB48F2740F6 /* hb-glib.h in Headers */ = {isa = PBXBuildFile; fileRef = 78F6D83C8A4A4618971F25CC /* hb-glib.h */; };
+		05F138A598D44AD0A2276460 /* hb-ft.h in Headers */ = {isa = PBXBuildFile; fileRef = 063A96BDC5C34C2AB7B76F00 /* hb-ft.h */; };
+		9B631F31F9CB4D64BA4AB73A /* hb-font.h in Headers */ = {isa = PBXBuildFile; fileRef = 39E83BB88E984B08AC02C039 /* hb-font.h */; };
+		11A06E7029064D79AA7AC316 /* hb-face.h in Headers */ = {isa = PBXBuildFile; fileRef = 10F66BA3CC534F49A42E3BB1 /* hb-face.h */; };
+		42F21074ACE542CB93BCF5FE /* hb-deprecated.h in Headers */ = {isa = PBXBuildFile; fileRef = 23AF5F1320ED4C118A82CA3A /* hb-deprecated.h */; };
+		6FD557777CF5482A9B40AB71 /* hb-coretext.h in Headers */ = {isa = PBXBuildFile; fileRef = 1294A49E244C49F7A8FB25EB /* hb-coretext.h */; };
+		D81DA905CEF844FF9485D012 /* hb-common.h in Headers */ = {isa = PBXBuildFile; fileRef = BF1D42EFAF9C4F91BF174136 /* hb-common.h */; };
+		66140F1E71E64DECB73ACF22 /* hb-buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE0FF90199A4EB4867CFC8F /* hb-buffer.h */; };
+		E19BB37DCC6447A6AB1CFF2F /* hb-blob.h in Headers */ = {isa = PBXBuildFile; fileRef = A92BFC68AD8C4572ABC0D94E /* hb-blob.h */; };
+		CAA3CB15E11F4F85BF631A40 /* Cairo.h in Headers */ = {isa = PBXBuildFile; fileRef = 828B6D2584DB4B84AFA9D3F1 /* Cairo.h */; };
+		9A6F7D0165314A208AF17C05 /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF4AD8F137904F509A58BD1C /* Cairo.cpp */; };
+		696A94012FFE4C9091FD30AB /* Test_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 202DF601F31C4DF2967B55E8 /* Test_Prefix.pch */; };
+		E433132A694F4C0C98233A65 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3D437E3DB2AA4A6292486F35 /* CinderApp.icns */; };
+		D1507C2FF16E4E67B3060238 /* Resources.h in Headers */ = {isa = PBXBuildFile; fileRef = 875C2156A5204F2BBBAB10F0 /* Resources.h */; };
+		47319B00467644A58E29AC40 /* TestApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FDB3B9D79F24CBF98D5450F /* TestApp.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		006D720219952D00008149E2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		006D720319952D00008149E2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		0091D8F80E81B9330029341E /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		00B784AF0FF439BC000DE1D7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		00B784B10FF439BC000DE1D7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		00B784B20FF439BC000DE1D7 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		00B995581B128DF400A5C623 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		00B995591B128DF400A5C623 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
+		8D1107320486CEB800E47090 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FDB3B9D79F24CBF98D5450F /* TestApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../src/TestApp.cpp; sourceTree = "<group>"; name = TestApp.cpp; };
+		875C2156A5204F2BBBAB10F0 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../include/Resources.h; sourceTree = "<group>"; name = Resources.h; };
+		3D437E3DB2AA4A6292486F35 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; name = CinderApp.icns; };
+		FDF6731E7AE04B29A07A2FD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; name = Info.plist; };
+		202DF601F31C4DF2967B55E8 /* Test_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = Test_Prefix.pch; sourceTree = "<group>"; name = Test_Prefix.pch; };
+		EF4AD8F137904F509A58BD1C /* Cairo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../../../../Cairo/src/Cairo.cpp; sourceTree = "<group>"; name = Cairo.cpp; };
+		828B6D2584DB4B84AFA9D3F1 /* Cairo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../../Cairo/include/cinder/cairo/Cairo.h; sourceTree = "<group>"; name = Cairo.h; };
+		A92BFC68AD8C4572ABC0D94E /* hb-blob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-blob.h"; sourceTree = "<group>"; name = "hb-blob.h"; };
+		1EE0FF90199A4EB4867CFC8F /* hb-buffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-buffer.h"; sourceTree = "<group>"; name = "hb-buffer.h"; };
+		BF1D42EFAF9C4F91BF174136 /* hb-common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-common.h"; sourceTree = "<group>"; name = "hb-common.h"; };
+		1294A49E244C49F7A8FB25EB /* hb-coretext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-coretext.h"; sourceTree = "<group>"; name = "hb-coretext.h"; };
+		23AF5F1320ED4C118A82CA3A /* hb-deprecated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-deprecated.h"; sourceTree = "<group>"; name = "hb-deprecated.h"; };
+		10F66BA3CC534F49A42E3BB1 /* hb-face.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-face.h"; sourceTree = "<group>"; name = "hb-face.h"; };
+		39E83BB88E984B08AC02C039 /* hb-font.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-font.h"; sourceTree = "<group>"; name = "hb-font.h"; };
+		063A96BDC5C34C2AB7B76F00 /* hb-ft.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-ft.h"; sourceTree = "<group>"; name = "hb-ft.h"; };
+		78F6D83C8A4A4618971F25CC /* hb-glib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-glib.h"; sourceTree = "<group>"; name = "hb-glib.h"; };
+		C1C7F5E747B24A75B25F1D51 /* hb-gobject-enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-gobject-enums.h"; sourceTree = "<group>"; name = "hb-gobject-enums.h"; };
+		BD49227BBDFD4C0DA5140926 /* hb-gobject-structs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-gobject-structs.h"; sourceTree = "<group>"; name = "hb-gobject-structs.h"; };
+		303C0AB54EB9480FA2C6DD54 /* hb-gobject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-gobject.h"; sourceTree = "<group>"; name = "hb-gobject.h"; };
+		D32B1B9B9D3243CA93CFC5EB /* hb-ot-font.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-ot-font.h"; sourceTree = "<group>"; name = "hb-ot-font.h"; };
+		D17E97647D26470F828F27A8 /* hb-ot-layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-ot-layout.h"; sourceTree = "<group>"; name = "hb-ot-layout.h"; };
+		EA993D0D34044A8F98BCA9B7 /* hb-ot-shape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-ot-shape.h"; sourceTree = "<group>"; name = "hb-ot-shape.h"; };
+		3BFD8F827CE04DCA8B05D474 /* hb-ot-tag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-ot-tag.h"; sourceTree = "<group>"; name = "hb-ot-tag.h"; };
+		4EE5C5FEEC644A2B9D6E408F /* hb-ot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-ot.h"; sourceTree = "<group>"; name = "hb-ot.h"; };
+		DBCAD86D60EE4D9B9597F792 /* hb-set.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-set.h"; sourceTree = "<group>"; name = "hb-set.h"; };
+		CD2F3B066D9845D88424F647 /* hb-shape-plan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-shape-plan.h"; sourceTree = "<group>"; name = "hb-shape-plan.h"; };
+		42795557760D430596F3AC67 /* hb-shape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-shape.h"; sourceTree = "<group>"; name = "hb-shape.h"; };
+		400A019F1E9647F4911D6ECC /* hb-unicode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-unicode.h"; sourceTree = "<group>"; name = "hb-unicode.h"; };
+		2F859B9726654A2789306053 /* hb-version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb-version.h"; sourceTree = "<group>"; name = "hb-version.h"; };
+		140B5874FF1A428E9F2B7E78 /* hb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz/hb.h"; sourceTree = "<group>"; name = hb.h; };
+		B59112EA639E45A88E39DBA6 /* pango-attributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-attributes.h"; sourceTree = "<group>"; name = "pango-attributes.h"; };
+		870489F85D5A4CDCBF0F2F9B /* pango-bidi-type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-bidi-type.h"; sourceTree = "<group>"; name = "pango-bidi-type.h"; };
+		C6359B78469D41C7B0ED4989 /* pango-break.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-break.h"; sourceTree = "<group>"; name = "pango-break.h"; };
+		CFB1AEC5D6264A63ACEFAE6C /* pango-context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-context.h"; sourceTree = "<group>"; name = "pango-context.h"; };
+		A8B2956987A44607A632C23A /* pango-coverage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-coverage.h"; sourceTree = "<group>"; name = "pango-coverage.h"; };
+		774F90557B8C482EA3744EF2 /* pango-engine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-engine.h"; sourceTree = "<group>"; name = "pango-engine.h"; };
+		FE9A3EE1269A42A19D1CC07D /* pango-enum-types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-enum-types.h"; sourceTree = "<group>"; name = "pango-enum-types.h"; };
+		5872826C0659445B98252C5C /* pango-features.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-features.h"; sourceTree = "<group>"; name = "pango-features.h"; };
+		C65DBD598B124998975779B6 /* pango-font.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-font.h"; sourceTree = "<group>"; name = "pango-font.h"; };
+		37B30BFBEA214883BBC33706 /* pango-fontmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-fontmap.h"; sourceTree = "<group>"; name = "pango-fontmap.h"; };
+		DA8C8B5787434A5EBEFE1C36 /* pango-fontset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-fontset.h"; sourceTree = "<group>"; name = "pango-fontset.h"; };
+		63A537AFA4B847F0A257F68C /* pango-glyph-item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-glyph-item.h"; sourceTree = "<group>"; name = "pango-glyph-item.h"; };
+		C7D189B486264240BB167554 /* pango-glyph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-glyph.h"; sourceTree = "<group>"; name = "pango-glyph.h"; };
+		6C57AA90860B4F05A1704D22 /* pango-gravity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-gravity.h"; sourceTree = "<group>"; name = "pango-gravity.h"; };
+		A2C6EE1BC1FE418FB7B74696 /* pango-item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-item.h"; sourceTree = "<group>"; name = "pango-item.h"; };
+		A385FB430A2249819FBCDAEF /* pango-language.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-language.h"; sourceTree = "<group>"; name = "pango-language.h"; };
+		75E7255D239D4A58BDDA3894 /* pango-layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-layout.h"; sourceTree = "<group>"; name = "pango-layout.h"; };
+		B1138F55D0734D5285617EE2 /* pango-matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-matrix.h"; sourceTree = "<group>"; name = "pango-matrix.h"; };
+		1CD752AF12DD4524AB1945C2 /* pango-modules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-modules.h"; sourceTree = "<group>"; name = "pango-modules.h"; };
+		6A4E36B0071B4077B27B9243 /* pango-ot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-ot.h"; sourceTree = "<group>"; name = "pango-ot.h"; };
+		18B8066406AC44289F9C6183 /* pango-renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-renderer.h"; sourceTree = "<group>"; name = "pango-renderer.h"; };
+		30EE569771C14B03867AA51C /* pango-script.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-script.h"; sourceTree = "<group>"; name = "pango-script.h"; };
+		2589886210414E4EAC62F8B0 /* pango-tabs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-tabs.h"; sourceTree = "<group>"; name = "pango-tabs.h"; };
+		67D2D896AD1B4F2BB7461E0C /* pango-types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-types.h"; sourceTree = "<group>"; name = "pango-types.h"; };
+		46E372F1D03A4FA9B2B35750 /* pango-utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango-utils.h"; sourceTree = "<group>"; name = "pango-utils.h"; };
+		A13F766E977B449FB2F0AE8C /* pango.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pango.h"; sourceTree = "<group>"; name = pango.h; };
+		610E9627952B4C93A5EB2907 /* pangocairo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pangocairo.h"; sourceTree = "<group>"; name = pangocairo.h; };
+		395F68C7D9454DB4BB087A8C /* pangocoretext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pangocoretext.h"; sourceTree = "<group>"; name = pangocoretext.h; };
+		FEC7210C591A451DB0EACF0F /* pangofc-decoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pangofc-decoder.h"; sourceTree = "<group>"; name = "pangofc-decoder.h"; };
+		54C50C17BF8E4EE08EC02D56 /* pangofc-font.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pangofc-font.h"; sourceTree = "<group>"; name = "pangofc-font.h"; };
+		396D8C7449F344ACA4E88680 /* pangofc-fontmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pangofc-fontmap.h"; sourceTree = "<group>"; name = "pangofc-fontmap.h"; };
+		E035A0008FD546D39FFB1C8B /* pangoft2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../include/macosx/pango-1.0/pango/pangoft2.h"; sourceTree = "<group>"; name = pangoft2.h; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				006D720419952D00008149E2 /* AVFoundation.framework in Frameworks */,
+				006D720519952D00008149E2 /* CoreMedia.framework in Frameworks */,
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */,
+				5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */,
+				00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */,
+				00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */,
+				00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */,
+				00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */,
+				00B9955A1B128DF400A5C623 /* IOKit.framework in Frameworks */,
+				00B9955B1B128DF400A5C623 /* IOSurface.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1FDB3B9D79F24CBF98D5450F /* TestApp.cpp */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				006D720219952D00008149E2 /* AVFoundation.framework */,
+				006D720319952D00008149E2 /* CoreMedia.framework */,
+				00B784AF0FF439BC000DE1D7 /* Accelerate.framework */,
+				00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */,
+				00B784B10FF439BC000DE1D7 /* AudioUnit.framework */,
+				00B784B20FF439BC000DE1D7 /* CoreAudio.framework */,
+				5323E6B10EAFCA74003A9687 /* CoreVideo.framework */,
+				0091D8F80E81B9330029341E /* OpenGL.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				00B995581B128DF400A5C623 /* IOKit.framework */,
+				00B995591B128DF400A5C623 /* IOSurface.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* Test.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				01B97315FEAEA392516A2CEA /* Blocks */,
+				29B97315FDCFA39411CA2CEA /* Headers */,
+				080E96DDFE201D6D7F000001 /* Source */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = Test;
+			sourceTree = "<group>";
+		};
+		286D1B6E72874DFEA1B2889F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				EF4AD8F137904F509A58BD1C /* Cairo.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		6223C9440A364F4BBE47242A /* cairo */ = {
+			isa = PBXGroup;
+			children = (
+				828B6D2584DB4B84AFA9D3F1 /* Cairo.h */,
+			);
+			name = cairo;
+			sourceTree = "<group>";
+		};
+		551B5C6A427B4EE5AB8918A2 /* cinder */ = {
+			isa = PBXGroup;
+			children = (
+				6223C9440A364F4BBE47242A /* cairo */,
+			);
+			name = cinder;
+			sourceTree = "<group>";
+		};
+		C54A0999FA5E4E878CE958A8 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				551B5C6A427B4EE5AB8918A2 /* cinder */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		34CE137C2B9D47C2B539597D /* Cairo */ = {
+			isa = PBXGroup;
+			children = (
+				286D1B6E72874DFEA1B2889F /* src */,
+				C54A0999FA5E4E878CE958A8 /* include */,
+			);
+			name = Cairo;
+			sourceTree = "<group>";
+		};
+		BBED27A0270F4C5B8EEF4447 /* harfbuzz */ = {
+			isa = PBXGroup;
+			children = (
+				A92BFC68AD8C4572ABC0D94E /* hb-blob.h */,
+				1EE0FF90199A4EB4867CFC8F /* hb-buffer.h */,
+				BF1D42EFAF9C4F91BF174136 /* hb-common.h */,
+				1294A49E244C49F7A8FB25EB /* hb-coretext.h */,
+				23AF5F1320ED4C118A82CA3A /* hb-deprecated.h */,
+				10F66BA3CC534F49A42E3BB1 /* hb-face.h */,
+				39E83BB88E984B08AC02C039 /* hb-font.h */,
+				063A96BDC5C34C2AB7B76F00 /* hb-ft.h */,
+				78F6D83C8A4A4618971F25CC /* hb-glib.h */,
+				C1C7F5E747B24A75B25F1D51 /* hb-gobject-enums.h */,
+				BD49227BBDFD4C0DA5140926 /* hb-gobject-structs.h */,
+				303C0AB54EB9480FA2C6DD54 /* hb-gobject.h */,
+				D32B1B9B9D3243CA93CFC5EB /* hb-ot-font.h */,
+				D17E97647D26470F828F27A8 /* hb-ot-layout.h */,
+				EA993D0D34044A8F98BCA9B7 /* hb-ot-shape.h */,
+				3BFD8F827CE04DCA8B05D474 /* hb-ot-tag.h */,
+				4EE5C5FEEC644A2B9D6E408F /* hb-ot.h */,
+				DBCAD86D60EE4D9B9597F792 /* hb-set.h */,
+				CD2F3B066D9845D88424F647 /* hb-shape-plan.h */,
+				42795557760D430596F3AC67 /* hb-shape.h */,
+				400A019F1E9647F4911D6ECC /* hb-unicode.h */,
+				2F859B9726654A2789306053 /* hb-version.h */,
+				140B5874FF1A428E9F2B7E78 /* hb.h */,
+			);
+			name = harfbuzz;
+			sourceTree = "<group>";
+		};
+		A1438BA0C6E644109EC6A1DB /* macosx */ = {
+			isa = PBXGroup;
+			children = (
+				BBED27A0270F4C5B8EEF4447 /* harfbuzz */,
+			);
+			name = macosx;
+			sourceTree = "<group>";
+		};
+		94B9738D4BC74E18ACAF1D0C /* include_p */ = {
+			isa = PBXGroup;
+			children = (
+				A1438BA0C6E644109EC6A1DB /* macosx */,
+			);
+			name = include_p;
+			sourceTree = "<group>";
+		};
+		092D37FA35BF47A6A0E84837 /* Cinder-Harfbuzz */ = {
+			isa = PBXGroup;
+			children = (
+				94B9738D4BC74E18ACAF1D0C /* include_p */,
+			);
+			name = "Cinder-Harfbuzz";
+			sourceTree = "<group>";
+		};
+		C97D9C64E5BA4A2090CFCFF6 /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				092D37FA35BF47A6A0E84837 /* Cinder-Harfbuzz */,
+			);
+			name = ..;
+			sourceTree = "<group>";
+		};
+		5901CE01BEDD41E39D41896C /* pango */ = {
+			isa = PBXGroup;
+			children = (
+				B59112EA639E45A88E39DBA6 /* pango-attributes.h */,
+				870489F85D5A4CDCBF0F2F9B /* pango-bidi-type.h */,
+				C6359B78469D41C7B0ED4989 /* pango-break.h */,
+				CFB1AEC5D6264A63ACEFAE6C /* pango-context.h */,
+				A8B2956987A44607A632C23A /* pango-coverage.h */,
+				774F90557B8C482EA3744EF2 /* pango-engine.h */,
+				FE9A3EE1269A42A19D1CC07D /* pango-enum-types.h */,
+				5872826C0659445B98252C5C /* pango-features.h */,
+				C65DBD598B124998975779B6 /* pango-font.h */,
+				37B30BFBEA214883BBC33706 /* pango-fontmap.h */,
+				DA8C8B5787434A5EBEFE1C36 /* pango-fontset.h */,
+				63A537AFA4B847F0A257F68C /* pango-glyph-item.h */,
+				C7D189B486264240BB167554 /* pango-glyph.h */,
+				6C57AA90860B4F05A1704D22 /* pango-gravity.h */,
+				A2C6EE1BC1FE418FB7B74696 /* pango-item.h */,
+				A385FB430A2249819FBCDAEF /* pango-language.h */,
+				75E7255D239D4A58BDDA3894 /* pango-layout.h */,
+				B1138F55D0734D5285617EE2 /* pango-matrix.h */,
+				1CD752AF12DD4524AB1945C2 /* pango-modules.h */,
+				6A4E36B0071B4077B27B9243 /* pango-ot.h */,
+				18B8066406AC44289F9C6183 /* pango-renderer.h */,
+				30EE569771C14B03867AA51C /* pango-script.h */,
+				2589886210414E4EAC62F8B0 /* pango-tabs.h */,
+				67D2D896AD1B4F2BB7461E0C /* pango-types.h */,
+				46E372F1D03A4FA9B2B35750 /* pango-utils.h */,
+				A13F766E977B449FB2F0AE8C /* pango.h */,
+				610E9627952B4C93A5EB2907 /* pangocairo.h */,
+				395F68C7D9454DB4BB087A8C /* pangocoretext.h */,
+				FEC7210C591A451DB0EACF0F /* pangofc-decoder.h */,
+				54C50C17BF8E4EE08EC02D56 /* pangofc-font.h */,
+				396D8C7449F344ACA4E88680 /* pangofc-fontmap.h */,
+				E035A0008FD546D39FFB1C8B /* pangoft2.h */,
+			);
+			name = pango;
+			sourceTree = "<group>";
+		};
+		1E7476D500604B369F9A2408 /* pango-1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				5901CE01BEDD41E39D41896C /* pango */,
+			);
+			name = "pango-1.0";
+			sourceTree = "<group>";
+		};
+		ECB788DF095848A283AC0746 /* macosx */ = {
+			isa = PBXGroup;
+			children = (
+				1E7476D500604B369F9A2408 /* pango-1.0 */,
+			);
+			name = macosx;
+			sourceTree = "<group>";
+		};
+		91D54FB0B7F34AD69E30787D /* include */ = {
+			isa = PBXGroup;
+			children = (
+				ECB788DF095848A283AC0746 /* macosx */,
+			);
+			name = include;
+			sourceTree = "<group>";
+		};
+		2BAB99564C7D4757B7DC5FFA /* Cinder-Pango */ = {
+			isa = PBXGroup;
+			children = (
+				C97D9C64E5BA4A2090CFCFF6 /* .. */,
+				91D54FB0B7F34AD69E30787D /* include */,
+			);
+			name = "Cinder-Pango";
+			sourceTree = "<group>";
+		};
+		01B97315FEAEA392516A2CEA /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				34CE137C2B9D47C2B539597D /* Cairo */,
+				2BAB99564C7D4757B7DC5FFA /* Cinder-Pango */,
+			);
+			name = Blocks;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				875C2156A5204F2BBBAB10F0 /* Resources.h */,
+				202DF601F31C4DF2967B55E8 /* Test_Prefix.pch */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3D437E3DB2AA4A6292486F35 /* CinderApp.icns */,
+				FDF6731E7AE04B29A07A2FD6 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Test;
+			productInstallPath = "$(HOME)/Applications";
+			productName = Test;
+			productReference = 8D1107320486CEB800E47090 /* Test.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Test" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* Test */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* Test */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E433132A694F4C0C98233A65 /* CinderApp.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47319B00467644A58E29AC40 /* TestApp.cpp in Sources */,
+				9A6F7D0165314A208AF17C05 /* Cairo.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Test_Prefix.pch;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"\"$(CINDER_PATH)/lib/macosx/$(CONFIGURATION)/libcinder.a\"",
+					../../../../Cairo/lib/macosx/libcairo.a,
+					"\"../../../../Cairo/lib/macosx/libpixman-1.a\"",
+					../../../../Cairo/lib/macosx/libpng16.a,
+					"\"../../../../Cinder-Harfbuzz/lib_p/macosx/libharfbuzz.a\"",
+					"\"../../../../Cinder-Harfbuzz/lib_p/macosx/libharfbuzz-gobject.a\"",
+					"\"../../../lib/macosx/libgio-2.0.a\"",
+					"\"../../../lib/macosx/libglib-2.0.a\"",
+					"\"../../../lib/macosx/libgmodule-2.0.a\"",
+					"\"../../../lib/macosx/libgobject-2.0.a\"",
+					"\"../../../lib/macosx/libgthread-2.0.a\"",
+					"\"../../../lib/macosx/libpango-1.0.a\"",
+					"\"../../../lib/macosx/libpangocairo-1.0.a\"",
+					"\"../../../lib/macosx/libpangoft2-1.0.a\"",
+					../../../lib/macosx/libintl.a,
+					../../../lib/macosx/libgettextpo.a,
+					../../../lib/macosx/libasprintf.a,
+					../../../lib/macosx/libfontconfig.a,
+					../../../lib/macosx/libffi.a,
+					"\"-liconv\"",
+					"\"-lexpat\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.libcinder.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Test;
+				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_FAST_MATH = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NDEBUG=1",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Test_Prefix.pch;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"\"$(CINDER_PATH)/lib/macosx/$(CONFIGURATION)/libcinder.a\"",
+					../../../../Cairo/lib/macosx/libcairo.a,
+					"\"../../../../Cairo/lib/macosx/libpixman-1.a\"",
+					../../../../Cairo/lib/macosx/libpng16.a,
+					"\"../../../../Cinder-Harfbuzz/lib_p/macosx/libharfbuzz.a\"",
+					"\"../../../../Cinder-Harfbuzz/lib_p/macosx/libharfbuzz-gobject.a\"",
+					"\"../../../lib/macosx/libgio-2.0.a\"",
+					"\"../../../lib/macosx/libglib-2.0.a\"",
+					"\"../../../lib/macosx/libgmodule-2.0.a\"",
+					"\"../../../lib/macosx/libgobject-2.0.a\"",
+					"\"../../../lib/macosx/libgthread-2.0.a\"",
+					"\"../../../lib/macosx/libpango-1.0.a\"",
+					"\"../../../lib/macosx/libpangocairo-1.0.a\"",
+					"\"../../../lib/macosx/libpangoft2-1.0.a\"",
+					../../../lib/macosx/libintl.a,
+					../../../lib/macosx/libgettextpo.a,
+					../../../lib/macosx/libasprintf.a,
+					../../../lib/macosx/libfontconfig.a,
+					../../../lib/macosx/libffi.a,
+					"\"-liconv\"",
+					"\"-lexpat\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.libcinder.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Test;
+				STRIP_INSTALLED_PRODUCT = YES;
+				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CINDER_PATH = "../../../../..";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
+				CLANG_CXX_LIBRARY = "libc++";
+				ENABLE_TESTABILITY = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(CINDER_PATH)/include\"",
+					../../../../Cairo/include/macosx/cairo,
+					"\"../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz\"",
+					../../../include/macosx,
+					"\"../../../include/macosx/pango-1.0\"",
+					"\"../../../include/macosx/glib-2.0\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = (
+					"\"$(CINDER_PATH)/include\" ../include",
+					../../../../Cairo/include,
+				);
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CINDER_PATH = "../../../../..";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(CINDER_PATH)/include\"",
+					../../../../Cairo/include/macosx/cairo,
+					"\"../../../../Cinder-Harfbuzz/include_p/macosx/harfbuzz\"",
+					../../../include/macosx,
+					"\"../../../include/macosx/pango-1.0\"",
+					"\"../../../include/macosx/glib-2.0\"",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = (
+					"\"$(CINDER_PATH)/include\" ../include",
+					../../../../Cairo/include,
+				);
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
