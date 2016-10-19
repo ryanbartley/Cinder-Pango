@@ -14,20 +14,20 @@ fi
 PREFIX_BASE_DIR=`pwd`/tmp
 
 PREFIX_LIBZ=${PREFIX_BASE_DIR}/libz_install
-#rm -rf ${PREFIX_LIBZ}
-#mkdir -p ${PREFIX_LIBZ}
+rm -rf ${PREFIX_LIBZ}
+mkdir -p ${PREFIX_LIBZ}
 
 PREFIX_LIBFFI=${PREFIX_BASE_DIR}/libffi_install
-#rm -rf ${PREFIX_LIBFFI}
-#mkdir -p ${PREFIX_LIBFFI}
+rm -rf ${PREFIX_LIBFFI}
+mkdir -p ${PREFIX_LIBFFI}
 
 PREFIX_GETTEXT=${PREFIX_BASE_DIR}/gettext_install
-#rm -rf ${PREFIX_GETTEXT}
-#mkdir -p ${PREFIX_GETTEXT}
+rm -rf ${PREFIX_GETTEXT}
+mkdir -p ${PREFIX_GETTEXT}
 
 PREFIX_GLIB=${PREFIX_BASE_DIR}/glib_install
-#rm -rf ${PREFIX_GLIB}
-#mkdir -p ${PREFIX_GLIB}
+rm -rf ${PREFIX_GLIB}
+mkdir -p ${PREFIX_GLIB}
 
 PREFIX_PANGO=${PREFIX_BASE_DIR}/pango_install
 rm -rf ${PREFIX_PANGO}
@@ -66,12 +66,12 @@ echo "Setting up Harfbuzz flags..."
 
 FINAL_PATH=`pwd`/..
 FINAL_LIB_PATH=${FINAL_PATH}/lib/${lower_case}
-#rm -rf ${FINAL_LIB_PATH}
-#mkdir -p ${FINAL_LIB_PATH}
+rm -rf ${FINAL_LIB_PATH}
+mkdir -p ${FINAL_LIB_PATH}
  
 FINAL_INCLUDE_PATH=${FINAL_PATH}/include/${lower_case}
-#rm -rf ${FINAL_INCLUDE_PATH}
-#mkdir -p ${FINAL_INCLUDE_PATH}
+rm -rf ${FINAL_INCLUDE_PATH}
+mkdir -p ${FINAL_INCLUDE_PATH}
 
 #########################
 ## different archs
@@ -81,12 +81,12 @@ buildOSX()
 {
   echo Building OSX...
 
-  #buildZlib
-  #buildLibffi
-  #buildGettext
+  buildZlib
+  buildLibffi
+  buildGettext
 	export LDFLAGS="${LDFLAGS} -L${PREFIX_GETTEXT}/lib -lintl -lgettextpo -lasprintf"
-  #buildGlib 
-  #buildHarfbuzzForPango
+  buildGlib 
+  buildHarfbuzzForPango
   export HARFBUZZ_CFLAGS="-I${HARFBUZZ_INCLUDE_PATH}/harfbuzz"
   export HARFBUZZ_LIBS="-L${HARFBUZZ_LIB_PATH} -lharfbuzz -lharfbuzz-gobject"
   buildPango
@@ -101,7 +101,9 @@ buildLinux()
   buildGettext
 	export LDFLAGS="${LDFLAGS} -L${PREFIX_GETTEXT}/lib -lgettextpo -lasprintf"
   buildGlib 
-  buildHarfbuzz
+  buildHarfbuzzForPango 
+  export HARFBUZZ_CFLAGS="-I${HARFBUZZ_INCLUDE_PATH}/harfbuzz"
+  export HARFBUZZ_LIBS="-L${HARFBUZZ_LIB_PATH} -lharfbuzz -lharfbuzz-gobject"
   buildPango
 }
 
@@ -307,14 +309,14 @@ echoFlags()
   echo "==================================================================="
 }
 
-#rm -rf tmp
-#mkdir tmp
+rm -rf tmp
+mkdir tmp
 cd tmp
 
-#downloadZlib
-#downloadLibffi
-#downloadGettext
-#downloadGlib
+downloadZlib
+downloadLibffi
+downloadGettext
+downloadGlib
 downloadPango
 
 declare -a config_settings=("debug" "release")
