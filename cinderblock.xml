@@ -10,13 +10,16 @@
 	<supports os="msw" />
 	<supports os="macosx" />
 	
-	<requires>org.libcinder.cairo</requires>
-	
-	<platform os="macosx">
-		<staticLibrary>../Cinder-Harfbuzz/lib_p/macosx/libharfbuzz.a</staticLibrary>
-		<staticLibrary>../Cinder-Harfbuzz/lib_p/macosx/libharfbuzz-gobject.a</staticLibrary>	
-		<headerPattern>../Cinder-Harfbuzz/include_p/macosx/harfbuzz/*.h</headerPattern>	
-		<includePath system="true">../Cinder-Harfbuzz/include_p/macosx/harfbuzz</includePath>
+  <platform os="macosx">
+    <includePath system="true">../../include/freetype</includePath>
+    <staticLibrary>lib/macosx/libcairo.a</staticLibrary>
+    <staticLibrary>lib/macosx/libpixman-1.a</staticLibrary>
+    <staticLibrary>lib/macosx/libpng16.a</staticLibrary>
+    <includePath system="true">include/macosx/cairo</includePath>
+		<staticLibrary>lib/macosx/libharfbuzz.a</staticLibrary>
+		<staticLibrary>lib/macosx/libharfbuzz-gobject.a</staticLibrary>	
+		<headerPattern>include/macosx/harfbuzz/*.h</headerPattern>	
+		<includePath system="true">include/macosx/harfbuzz</includePath>
 		<staticLibrary>lib/macosx/libgio-2.0.a</staticLibrary>	
 		<staticLibrary>lib/macosx/libglib-2.0.a</staticLibrary>	
 		<staticLibrary>lib/macosx/libgmodule-2.0.a</staticLibrary>	
