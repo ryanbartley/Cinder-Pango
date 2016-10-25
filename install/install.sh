@@ -37,25 +37,6 @@ PREFIX_PANGO=${PREFIX_BASE_DIR}/pango_install
 rm -rf ${PREFIX_PANGO}
 mkdir -p ${PREFIX_PANGO}
 
-##########################
-## cinder paths for cairo
-##########################
-
-CAIRO_BASE_DIR=`pwd`/../../Cairo
-CAIRO_LIB_PATH="${CAIRO_BASE_DIR}/lib/${lower_case}"
-CAIRO_INCLUDE_PATH="${CAIRO_BASE_DIR}/include/${lower_case}/cairo"
-# make sure it's the correct version
-echo "Setting up cairo flags..."
-
-#############################
-## cinder paths for harfbuzz
-#############################
-
-HARFBUZZ_BASE_DIR=`pwd`/../../Cinder-Harfbuzz
-HARFBUZZ_LIB_PATH="${HARFBUZZ_BASE_DIR}/lib_p/${lower_case}"
-HARFBUZZ_INCLUDE_PATH="${HARFBUZZ_BASE_DIR}/include_p/${lower_case}"
-echo "Setting up Harfbuzz flags..."
-
 #########################
 ## create final path
 #########################
@@ -68,6 +49,25 @@ mkdir -p ${FINAL_LIB_PATH}
 FINAL_INCLUDE_PATH=${FINAL_PATH}/include/${lower_case}
 rm -rf ${FINAL_INCLUDE_PATH}
 mkdir -p ${FINAL_INCLUDE_PATH}
+
+##########################
+## cinder paths for cairo
+##########################
+
+CAIRO_BASE_DIR=`pwd`/../../Cairo
+CAIRO_LIB_PATH=${FINAL_LIB_PATH}
+CAIRO_INCLUDE_PATH=${FINAL_INCLUDE_PATH}
+# make sure it's the correct version
+echo "Setting up cairo flags..."
+
+#############################
+## cinder paths for harfbuzz
+#############################
+
+HARFBUZZ_BASE_DIR=`pwd`/../../Cinder-Harfbuzz
+HARFBUZZ_LIB_PATH=${FINAL_LIB_PATH}
+HARFBUZZ_INCLUDE_PATH=${FINAL_INCLUDE_PATH}
+echo "Setting up Harfbuzz flags..."
 
 #########################
 ## different archs
@@ -91,6 +91,10 @@ buildOSX()
   export FONTCONFIG_LIBS="-L${PREFIX_FONTCONFIG}/lib -lfontconfig"
   export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:${PREFIX_FONTCONFIG}/lib/pkgconfig:${PREFIX_BASE_DIR}/freetype/pkgconfig"
 
+  buildCairoForPango
+  export CAIRO_CFLAGS="-I${CAIRO_INCLUDE_PATH}/cairo"
+  export CAIRO_LIBS="-L${CAIRO_LIB_PATH} -lcairo -lpixman-1 -lpng -L${PREFIX_LIBZ}/lib -lz"
+
   buildHarfbuzzForPango
   export HARFBUZZ_CFLAGS="-I${HARFBUZZ_INCLUDE_PATH}/harfbuzz"
   export HARFBUZZ_LIBS="-L${HARFBUZZ_LIB_PATH} -lharfbuzz -lharfbuzz-gobject"
@@ -112,6 +116,10 @@ buildLinux()
   export LDFLAGS="${LDFLAGS} -L${PREFIX_GETTEXT}/lib -lgettextpo -lasprintf"
   buildGlib 
   
+  buildCairoForPango
+  export CAIRO_CFLAGS="-I${CAIRO_INCLUDE_PATH}"
+  export CAIRO_LIBS="-L${CAIRO_LIB_PATH} -lcairo -lpixman-1 -lpng -L${PREFIX_LIBZ}/lib -lz"
+
   buildHarfbuzzForPango 
   export HARFBUZZ_CFLAGS="-I${HARFBUZZ_INCLUDE_PATH}/harfbuzz"
   export HARFBUZZ_LIBS="-L${HARFBUZZ_LIB_PATH} -lharfbuzz -lharfbuzz-gobject"
@@ -185,7 +193,9 @@ downloadPango()
 
 createFreetypePC()
 {
+  rm - rf freetype/pkgconfig
   mkdir -p freetype/pkgconfig
+ 
   echo "prefix=`pwd`/../../../..
   exec_prefix=${prefix}
   libdir=${prefix}/lib/macosx/Release
@@ -318,6 +328,20 @@ buildGlib()
   cd ..
 }
 
+buildCairoForPango()
+{
+  # need to test for existence and quit
+  cd ${CAIRO_BASE_DIR}/install
+  
+  echo "==================================================================="
+  echo "Building Cairo"
+  echo "==================================================================="
+  
+  ./install.sh ${lower_case} --with-pango
+
+  cd ../../Cinder-Pango/install/tmp
+}
+
 buildHarfbuzzForPango()
 {
   # need to test for existence and quit
@@ -395,8 +419,6 @@ export GLIB_CFLAGS="-I${PREFIX_GLIB}/include/glib-2.0 -I${PREFIX_GLIB}/lib/glib-
 export GLIB_LIBS="-L${PREFIX_GLIB}/lib -lglib-2.0 -lgobject-2.0"
 export GOBJECT_CFLAGS="-I${PREFIX_GLIB}/include/glib-2.0 -I${PREFIX_GLIB}/lib/glib-2.0/include"
 export GOBJECT_LIBS="-L${PREFIX_GLIB}/lib -lgobject-2.0"
-export CAIRO_CFLAGS="-I${CAIRO_INCLUDE_PATH}"
-export CAIRO_LIBS="-L${CAIRO_LIB_PATH} -lcairo -lpixman-1 -lpng -L${PREFIX_LIBZ}/lib -lz"
 export PKG_CONFIG_PATH="${CAIRO_BASE_DIR}/install/tmp/cairo_install/lib/pkgconfig:${CAIRO_BASE_DIR}/install/tmp/libpng_install/lib/pkgconfig:${CAIRO_BASE_DIR}/install/tmp/pixman_install/lib/pkgconfig:${PREFIX_GLIB}/lib/pkgconfig"
 
 echo ${PKG_CONFIG_PATH}

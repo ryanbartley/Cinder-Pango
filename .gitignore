@@ -66,6 +66,8 @@ cinderConfig.cmake
 tmp/
 lib/
 include/
+test/Test/assets/helloworld.png
+
 # CinderBlocks
 blocks/
 !blocks/[__AppTemplates,Box2D,Cairo,FMOD,LocationManager,MotionManager,OSC,QuickTime,TUIO]
