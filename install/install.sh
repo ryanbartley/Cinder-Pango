@@ -56,7 +56,7 @@ mkdir -p ${FINAL_INCLUDE_PATH}
 
 CAIRO_BASE_DIR=`pwd`/../../Cairo
 CAIRO_LIB_PATH=${FINAL_LIB_PATH}
-CAIRO_INCLUDE_PATH=${FINAL_INCLUDE_PATH}
+CAIRO_INCLUDE_PATH=${FINAL_INCLUDE_PATH}/cairo
 # make sure it's the correct version
 echo "Setting up cairo flags..."
 
@@ -66,7 +66,7 @@ echo "Setting up cairo flags..."
 
 HARFBUZZ_BASE_DIR=`pwd`/../../Cinder-Harfbuzz
 HARFBUZZ_LIB_PATH=${FINAL_LIB_PATH}
-HARFBUZZ_INCLUDE_PATH=${FINAL_INCLUDE_PATH}
+HARFBUZZ_INCLUDE_PATH=${FINAL_INCLUDE_PATH}/harfbuzz
 echo "Setting up Harfbuzz flags..."
 
 #########################
@@ -92,11 +92,11 @@ buildOSX()
   export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:${PREFIX_FONTCONFIG}/lib/pkgconfig:${PREFIX_BASE_DIR}/freetype/pkgconfig"
 
   buildCairoForPango
-  export CAIRO_CFLAGS="-I${CAIRO_INCLUDE_PATH}/cairo"
+  export CAIRO_CFLAGS="-I${CAIRO_INCLUDE_PATH}"
   export CAIRO_LIBS="-L${CAIRO_LIB_PATH} -lcairo -lpixman-1 -lpng -L${PREFIX_LIBZ}/lib -lz"
 
   buildHarfbuzzForPango
-  export HARFBUZZ_CFLAGS="-I${HARFBUZZ_INCLUDE_PATH}/harfbuzz"
+  export HARFBUZZ_CFLAGS="-I${HARFBUZZ_INCLUDE_PATH}"
   export HARFBUZZ_LIBS="-L${HARFBUZZ_LIB_PATH} -lharfbuzz -lharfbuzz-gobject"
 
   createFreetypePC
@@ -115,16 +115,23 @@ buildLinux()
 	
   export LDFLAGS="${LDFLAGS} -L${PREFIX_GETTEXT}/lib -lgettextpo -lasprintf"
   buildGlib 
+
+  export FONTCONFIG_CFLAGS="-I/usr/include"
+  export FONTCONFIG_LIBS="-L/usr/lib/x86_64-linux-gnu -lfontconfig"
+  export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:usr/lib/x86_64-linux-gnu/pkgconfig:${PREFIX_BASE_DIR}/freetype/pkgconfig"
   
-  buildCairoForPango
-  export CAIRO_CFLAGS="-I${CAIRO_INCLUDE_PATH}"
+	buildCairoForPango
+	export CAIRO_CFLAGS="-I${CAIRO_INCLUDE_PATH}"
   export CAIRO_LIBS="-L${CAIRO_LIB_PATH} -lcairo -lpixman-1 -lpng -L${PREFIX_LIBZ}/lib -lz"
 
   buildHarfbuzzForPango 
-  export HARFBUZZ_CFLAGS="-I${HARFBUZZ_INCLUDE_PATH}/harfbuzz"
-  export HARFBUZZ_LIBS="-L${HARFBUZZ_LIB_PATH} -lharfbuzz -lharfbuzz-gobject"
+  export HARFBUZZ_CFLAGS="-I${HARFBUZZ_INCLUDE_PATH}"
+  export HARFBUZZ_LIBS="-L${HARFBUZZ_LIB_PATH} -lharfbuzz -lharfbuzz-gobject -lharfbuzz-icu"
   
-  buildPango
+  createFreetypePC
+  export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:${PREFIX_BASE_DIR}/freetype/pkgconfig"  
+  
+	buildPango
 }
 
 #########################
@@ -193,7 +200,7 @@ downloadPango()
 
 createFreetypePC()
 {
-  rm - rf freetype/pkgconfig
+  rm -rf freetype/pkgconfig
   mkdir -p freetype/pkgconfig
  
   echo "prefix=`pwd`/../../../..
