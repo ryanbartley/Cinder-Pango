@@ -5,7 +5,16 @@ lower_case=$(echo "$1" | tr '[:upper:]' '[:lower:]')
 if [ -z $1 ]; then 
 	echo Need to provide platform. Possible platforms are linux, macosx, ios. Exiting!
 	exit 
-fi 
+fi
+
+CINDER_ROOT_DIR=""
+if [ -z $2 ]; then
+	CINDER_ROOT_DIR=`pwd`/../../../..
+	echo Building with normal cinder dir...${CINDER_ROOT_DIR}.
+else
+	CINDER_ROOT_DIR=${2}
+	echo Building with user specified cinder dir...${CINDER_ROOT_DIR}.
+fi
 
 #########################
 ## create prefix dirs
@@ -54,7 +63,7 @@ mkdir -p ${FINAL_INCLUDE_PATH}
 ## cinder paths for cairo
 ##########################
 
-CAIRO_BASE_DIR=`pwd`/../../Cairo
+CAIRO_BASE_DIR=${CINDER_ROOT_DIR}/blocks/Cairo
 CAIRO_LIB_PATH=${FINAL_LIB_PATH}
 CAIRO_INCLUDE_PATH=${FINAL_INCLUDE_PATH}
 # make sure it's the correct version
@@ -64,7 +73,18 @@ echo "Setting up cairo flags..."
 ## cinder paths for harfbuzz
 #############################
 
-HARFBUZZ_BASE_DIR=`pwd`/../../Cinder-Harfbuzz
+check_harfbuzz_dir=${CINDER_ROOT_DIR}/blocks/Cinder-Harfbuzz
+HARFBUZZ_BASE_DIR=
+if [ -d ${check_harfbuzz_dir} ]; then
+	HARFBUZZ_BASE_DIR=${check_harfbuzz_dir}
+else
+	check_harfbuzz_dir=`pwd`/../../Cinder-Harfbuzz
+	if [ ! -d ${HARFBUZZ_BASE_DIR} ]; then
+		echo "Can't find Harfbuzz cinder block. Exiting!"
+		exit
+	fi
+fi
+
 HARFBUZZ_LIB_PATH=${FINAL_LIB_PATH}
 HARFBUZZ_INCLUDE_PATH=${FINAL_INCLUDE_PATH}
 echo "Setting up Harfbuzz flags..."
@@ -351,7 +371,7 @@ buildHarfbuzzForPango()
   echo "Building Harfbuzz"
   echo "==================================================================="
   
-  ./install.sh ${lower_case} --with-pango
+  ./install.sh ${lower_case} --with-pango ${CINDER_ROOT_DIR}
 
   cd ../../Cinder-Pango/install/tmp
 }
@@ -439,7 +459,7 @@ then
   ## we use cinder to link freetype
   ##################################
 
-  CINDER_DIR=`pwd`/../../../..
+  CINDER_DIR=${CINDER_ROOT_DIR}
   CINDER_LIB_DIR=${CINDER_DIR}/lib/${lower_case}/Release
   CINDER_FREETYPE_INCLUDE_PATH=${CINDER_DIR}/include/
 
@@ -467,7 +487,7 @@ then
   ## we use cinder to link freetype
   ##################################
 
-  CINDER_DIR=`pwd`/../../../..
+  CINDER_DIR=${CINDER_ROOT_DIR}
   CINDER_LIB_DIR=${CINDER_DIR}/lib/${lower_case}/x86_64/ogl/Release
   CINDER_FREETYPE_INCLUDE_PATH=${CINDER_DIR}/include/
 
