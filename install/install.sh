@@ -20,7 +20,9 @@ fi
 ## create prefix dirs
 #########################
 
-PREFIX_BASE_DIR=`pwd`/tmp
+PANGO_BASE_DIR=`pwd`/..
+
+PREFIX_BASE_DIR=${PANGO_BASE_DIR}/install/tmp
 
 PREFIX_LIBZ=${PREFIX_BASE_DIR}/libz_install
 rm -rf ${PREFIX_LIBZ}
@@ -74,15 +76,18 @@ echo "Setting up cairo flags..."
 #############################
 
 check_harfbuzz_dir=${CINDER_ROOT_DIR}/blocks/Cinder-Harfbuzz
-HARFBUZZ_BASE_DIR=
+HARFBUZZ_BASE_DIR=""
 if [ -d ${check_harfbuzz_dir} ]; then
-	HARFBUZZ_BASE_DIR=${check_harfbuzz_dir}
+	echo Using Cinder Root harfbuzz block
+  HARFBUZZ_BASE_DIR=${check_harfbuzz_dir}
 else
 	check_harfbuzz_dir=`pwd`/../../Cinder-Harfbuzz
-	if [ ! -d ${HARFBUZZ_BASE_DIR} ]; then
+	if [ ! -d ${check_harfbuzz_dir} ]; then
 		echo "Can't find Harfbuzz cinder block. Exiting!"
 		exit
 	fi
+  echo "Using relative harfbuzz block."
+  HARFBUZZ_BASE_DIR=${check_harfbuzz_dir}
 fi
 
 HARFBUZZ_LIB_PATH=${FINAL_LIB_PATH}
@@ -364,9 +369,9 @@ buildCairoForPango()
   echo "Building Cairo"
   echo "==================================================================="
   
-  ./install.sh ${lower_case} --with-pango
+  ./install.sh ${lower_case} --with-pango ${PANGO_BASE_DIR}
 
-  cd ../../Cinder-Pango/install/tmp
+  cd ${PANGO_BASE_DIR}/install/tmp
 }
 
 buildHarfbuzzForPango()
@@ -380,7 +385,7 @@ buildHarfbuzzForPango()
   
   ./install.sh ${lower_case} --with-pango ${CINDER_ROOT_DIR}
 
-  cd ../../Cinder-Pango/install/tmp
+  cd ${PANGO_BASE_DIR}/install/tmp
 }
 
 buildPango()
