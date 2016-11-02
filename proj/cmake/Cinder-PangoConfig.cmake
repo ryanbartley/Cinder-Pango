@@ -1,6 +1,9 @@
 if( NOT TARGET Cinder-Pango )
 	
-	get_filename_component( CINDER_PATH "${CMAKE_CURRENT_LIST_DIR}/../../../.." ABSOLUTE )
+  if( NOT EXISTS ${CINDER_PATH} )
+    get_filename_component( CINDER_PATH "${CMAKE_CURRENT_LIST_DIR}/../../../../cinder" ABSOLUTE )
+  endif()
+
   get_filename_component( BLOCK_PATH "${CMAKE_CURRENT_LIST_DIR}/../.." ABSOLUTE )
 
 	if( NOT TARGET cinder )
