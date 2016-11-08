@@ -10,16 +10,21 @@
 	<supports os="msw" />
 	<supports os="macosx" />
 	
-  <platform os="macosx">
-    <includePath system="true">../../include/freetype</includePath>
-    <staticLibrary>lib/macosx/libcairo.a</staticLibrary>
-    <staticLibrary>lib/macosx/libpixman-1.a</staticLibrary>
-    <staticLibrary>lib/macosx/libpng16.a</staticLibrary>
-    <includePath system="true">include/macosx/cairo</includePath>
+  	<platform os="macosx">
+    	<includePath system="true">../../include/freetype</includePath>
+    	<includePath system="true">include/macosx/cairo</includePath>
+		<includePath system="true">include/macosx/harfbuzz</includePath>
+    	<includePath system="true">include/macosx/</includePath>
+    	<includePath system="true">include/macosx/pango-1.0/</includePath>
+		<includePath system="true">include/macosx/glib-2.0/</includePath>
+    	<headerPattern>include/macosx/pango-1.0/pango/*.h</headerPattern>
+    	<headerPattern>include/macosx/harfbuzz/*.h</headerPattern>
+    	<headerPattern>include/macosx/cairo/*.h</headerPattern>
+    	<staticLibrary>lib/macosx/libcairo.a</staticLibrary>
+    	<staticLibrary>lib/macosx/libpixman-1.a</staticLibrary>
+    	<staticLibrary>lib/macosx/libpng16.a</staticLibrary>
 		<staticLibrary>lib/macosx/libharfbuzz.a</staticLibrary>
 		<staticLibrary>lib/macosx/libharfbuzz-gobject.a</staticLibrary>	
-		<headerPattern>include/macosx/harfbuzz/*.h</headerPattern>	
-		<includePath system="true">include/macosx/harfbuzz</includePath>
 		<staticLibrary>lib/macosx/libgio-2.0.a</staticLibrary>	
 		<staticLibrary>lib/macosx/libglib-2.0.a</staticLibrary>	
 		<staticLibrary>lib/macosx/libgmodule-2.0.a</staticLibrary>	
@@ -35,27 +40,37 @@
     	<staticLibrary>lib/macosx/libffi.a</staticLibrary>
     	<staticLibrary absolute="true">-liconv</staticLibrary>
     	<staticLibrary absolute="true">-lexpat</staticLibrary>
-    	<headerPattern>include/macosx/pango-1.0/pango/*.h</headerPattern>	
-    	<includePath system="true">include/macosx/</includePath>
-    	<includePath system="true">include/macosx/pango-1.0/</includePath>
-		<includePath system="true">include/macosx/glib-2.0/</includePath>
 	</platform>
 	<platform os="msw">
-		<staticLibrary>../Cinder-Harfbuzz/lib_p/msw/harfbuzz.lib</staticLibrary>
-		<staticLibrary>../Cinder-Harfbuzz/lib_p/msw/harfbuzz-gobject.lib</staticLibrary>	
-		<headerPattern>../Cinder-Harfbuzz/include_p/msw/harfbuzz/*.h</headerPattern>	
-		<includePath system="true">../Cinder-Harfbuzz/include_p/msw/harfbuzz</includePath>
-		<staticLibrary>lib/msw/libgio-2.0.a</staticLibrary>	
-		<staticLibrary>lib/msw/libglib-2.0.a</staticLibrary>	
-		<staticLibrary>lib/msw/libgmodule-2.0.a</staticLibrary>	
-		<staticLibrary>lib/msw/libgobject-2.0.a</staticLibrary>	
-		<staticLibrary>lib/msw/libgthread-2.0.a</staticLibrary>	
-		<staticLibrary>lib/msw/libpango-1.0.a</staticLibrary>	
-		<staticLibrary>lib/msw/libpangocairo-1.0.a</staticLibrary>	
-		<staticLibrary>lib/msw/libpangooft2-1.0.a</staticLibrary>	
-		<headerPattern>include/msw/pango-1.0/pango/*.h</headerPattern>	
-		<includePath system="true">include/msw/pango-1.0/</includePath>
-		<includePath system="true">include/msw/glib-2.0/</includePath>	
+		<includePath system="true">../../include/freetype</includePath>
+    	<includePath system="true">include/msw/cairo</includePath>
+		<includePath system="true">include/msw/harfbuzz</includePath>
+    	<includePath system="true">include/msw/</includePath>
+    	<includePath system="true">include/msw/pango-1.0/</includePath>
+		<includePath system="true">include/msw/glib-2.0/</includePath>
+    	<headerPattern>include/msw/pango-1.0/pango/*.h</headerPattern>
+    	<headerPattern>include/msw/harfbuzz/*.h</headerPattern>
+    	<headerPattern>include/msw/cairo/*.h</headerPattern>
+    	<staticLibrary>lib/msw/libcairo.dll.a</staticLibrary>
+    	<staticLibrary>lib/msw/libcairo-gobject.dll.a</staticLibrary>
+    	<staticLibrary>lib/msw/libcairo-script-interpreter.dll.a</staticLibrary>
+    	<staticLibrary>lib/msw/libffi.dll.a</staticLibrary>
+    	<staticLibrary>lib/msw/libfontconfig.dll.a</staticLibrary>
+		<staticLibrary>lib/msw/libgio-2.0.dll.a</staticLibrary>	
+		<staticLibrary>lib/msw/libglib-2.0.dll.a</staticLibrary>	
+		<staticLibrary>lib/msw/libgmodule-2.0.dll.a</staticLibrary>	
+		<staticLibrary>lib/msw/libgobject-2.0.dll.a</staticLibrary>	
+		<staticLibrary>lib/msw/libgthread-2.0.dll.a</staticLibrary>	
+		<staticLibrary>lib/msw/libharfbuzz.dll.a</staticLibrary>	
+    	<staticLibrary>lib/msw/libiconv.dll.a</staticLibrary>
+    	<staticLibrary>lib/msw/libintl.dll.a</staticLibrary>
+		<staticLibrary>lib/msw/libpango-1.0.dll.a</staticLibrary>	
+		<staticLibrary>lib/msw/libpangocairo-1.0.dll.a</staticLibrary>	
+    	<staticLibrary>lib/msw/libpangoft2-1.0.dll.a</staticLibrary>
+    	<staticLibrary>lib/msw/libpangowin32-1.0.dll.a</staticLibrary>	
+    	<staticLibrary>lib/msw/libpixman-1.dll.a</staticLibrary>
+    	<staticLibrary>lib/msw/libpng.dll.a</staticLibrary>
+    	<staticLibrary>lib/msw/libxml2.dll.a</staticLibrary>
 	</platform>
 </block>
 </cinder>

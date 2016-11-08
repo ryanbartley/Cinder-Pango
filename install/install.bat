@@ -52,8 +52,15 @@ set PATH=%PATH%;"C:\Program Files\7-Zip\"
 echo "%me%: Copying ..."
 cd %compressed_dir%\lib
 
-for %%I in (libgio-2.0.a libglib-2.0.a libgmodule-2.0.a libgobject-2.0.a libgthread-2.0.a libpango-1.0.a libpangocairo-1.0.a libpangoft2-1.0.a libpng.a libpixman-1.a libcairo.a libharfbuzz.a libfontconfig.a libfreetype.a) do xcopy /F %%I %pango_final_lib_path%
+for %%I in (libcairo.dll.a libcairo-gobject.dll.a libcairo-script-interpreter.dll.a 
+			libffi.dll.a libfontconfig.dll.a libgio-2.0.dll.a libglib-2.0.dll.a 
+			libgmodule-2.0.dll.a libgobject-2.0.dll.a libgthread-2.0.dll.a
+			libharfbuzz.dll.a libiconv.dll.a libintl.dll.a libpango.dll.a 
+			libpangocairo.dll.a libpangoft2.dll.a libpangowin32.dll.a 
+			libpixman-1.dll.a libpng.dll.a libxml2.dll.a
+			) do xcopy /F %%I %pango_final_lib_path%
 
+xcopy /s /e %compressed_dir%\lib\glib-2.0\include\glibconfig.h %pango_final_include_path%\glib-2.0
 xcopy /s /e %compressed_dir%\include\cairo %pango_final_include_path%\cairo\
 xcopy /s /e %compressed_dir%\include\fontconfig %pango_final_include_path%\fontconfig\
 xcopy /s /e %compressed_dir%\include\freetype2 %pango_final_include_path%\freetype2\
