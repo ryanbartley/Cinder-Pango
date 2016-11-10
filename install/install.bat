@@ -55,8 +55,8 @@ cd %compressed_dir%\lib
 for %%I in (libcairo.dll.a libcairo-gobject.dll.a libcairo-script-interpreter.dll.a 
 			libffi.dll.a libfontconfig.dll.a libgio-2.0.dll.a libglib-2.0.dll.a 
 			libgmodule-2.0.dll.a libgobject-2.0.dll.a libgthread-2.0.dll.a
-			libharfbuzz.dll.a libiconv.dll.a libintl.dll.a libpango.dll.a 
-			libpangocairo.dll.a libpangoft2.dll.a libpangowin32.dll.a 
+			libharfbuzz.dll.a libiconv.dll.a libintl.dll.a libpango-1.0.dll.a 
+			libpangocairo-1.0.dll.a libpangoft2-1.0.dll.a libpangowin32-1.0.dll.a 
 			libpixman-1.dll.a libpng.dll.a libxml2.dll.a
 			) do xcopy /F %%I %pango_final_lib_path%
 
