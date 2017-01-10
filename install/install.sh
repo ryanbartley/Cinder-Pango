@@ -24,10 +24,6 @@ PANGO_BASE_DIR=`pwd`/..
 
 PREFIX_BASE_DIR=${PANGO_BASE_DIR}/install/tmp
 
-PREFIX_LIBZ=${PREFIX_BASE_DIR}/libz_install
-rm -rf ${PREFIX_LIBZ}
-mkdir -p ${PREFIX_LIBZ}
-
 PREFIX_FONTCONFIG=${PREFIX_BASE_DIR}/fontconfig_install
 rm -rf ${PREFIX_FONTCONFIG}
 mkdir -p ${PREFIX_FONTCONFIG}
@@ -102,7 +98,6 @@ buildOSX()
 {
   echo Building OSX...
 
-  buildZlib
   buildLibffi
   export LDFLAGS="${LDFLAGS} -framework AppKit -framework CoreText -framework CoreFoundation -framework CoreGraphics -framework Carbon"
  
@@ -118,7 +113,7 @@ buildOSX()
 
   buildCairoForPango
   export CAIRO_CFLAGS="-I${CAIRO_INCLUDE_PATH}"
-  export CAIRO_LIBS="-L${CAIRO_LIB_PATH} -lcairo -lpixman-1 -lpng -L${PREFIX_LIBZ}/lib -lz"
+  export CAIRO_LIBS="-L${CAIRO_LIB_PATH} -lcairo -lpixman-1 -lpng "
 
   buildHarfbuzzForPango
   export HARFBUZZ_CFLAGS="-I${HARFBUZZ_INCLUDE_PATH}"
@@ -134,7 +129,6 @@ buildLinux()
 {
   echo Building Linux...
 
-  buildZlib
   buildLibffi
   buildGettext
 	
@@ -147,7 +141,7 @@ buildLinux()
   
 	buildCairoForPango
 	export CAIRO_CFLAGS="-I${CAIRO_INCLUDE_PATH}"
-  export CAIRO_LIBS="-L${CAIRO_LIB_PATH} -lcairo -lpixman-1 -lpng -L${PREFIX_LIBZ}/lib -lz"
+  export CAIRO_LIBS="-L${CAIRO_LIB_PATH} -lcairo -lpixman-1 -lpng -L${CINDER_LIB_DIR} -lcinder"
 
   buildHarfbuzzForPango 
   export HARFBUZZ_CFLAGS="-I${HARFBUZZ_INCLUDE_PATH}"
@@ -162,16 +156,6 @@ buildLinux()
 #########################
 ## downloading libs
 #########################
-
-downloadZlib()
-{
-	echo Downloading zlib...
-  curl http://zlib.net/zlib-1.2.8.tar.gz -o zlib.tar.gz
-  tar -xf zlib.tar.gz
-  mv zlib-* zlib
-  rm zlib.tar.gz
-  echo Finished Downloading zlib...
-}
 
 downloadFontconfig()
 {
@@ -241,25 +225,6 @@ createFreetypePC()
   Requires.private: 
   Libs: -L${libdir} -lcinder
   Cflags: -I${includedir}" >> freetype/pkgconfig/freetype2.pc
-}
-
-buildZlib()
-{
-  cd zlib
-  
-  echo "==================================================================="
-  echo "Building and installing zlib, ${PREFIX_LIBZ}"
-  echo "==================================================================="
-  
-  PREFIX=${PREFIX_LIBZ}
- 
-  ./configure --prefix=${PREFIX}
-
-  make -j 6
-  make install
-  make clean
-
-  cd ..
 }
 
 buildFontconfig()
@@ -434,7 +399,6 @@ rm -rf tmp
 mkdir tmp
 cd tmp
 
-downloadZlib
 downloadLibffi
 downloadGettext
 downloadGlib
@@ -443,8 +407,6 @@ downloadPango
 declare -a config_settings=("debug" "release")
 declare -a config_paths=("/Debug" "/Release")
 
-export ZLIB_LIBS="-L${PREFIX_LIBZ}/lib -lz"
-export ZLIB_CFLAGS="-I${PREFIX_LIBZ}/include"
 export LIBFFI_LIBS="-L${PREFIX_LIBFFI}/lib -lffi"
 export LIBFFI_CFLAGS="-I${PREFIX_LIBFFI}/lib/libffi-3.2.1/include"
 export GLIB_CFLAGS="-I${PREFIX_GLIB}/include/glib-2.0 -I${PREFIX_GLIB}/lib/glib-2.0/include"
@@ -474,6 +436,7 @@ then
   CINDER_DIR=${CINDER_ROOT_DIR}
   CINDER_LIB_DIR=${CINDER_DIR}/lib/${lower_case}/Release
   CINDER_FREETYPE_INCLUDE_PATH=${CINDER_DIR}/include/
+  CINDER_LIBZ_INCLUDE_PATH=${CINDER_DIR}/src/
 
   if [ ! -f "${CINDER_LIB_DIR}/libcinder.a" ]; then
     echo "Need to build release version of cinder to run this install. Cairo needs Freetype. Exiting!"
@@ -482,6 +445,8 @@ then
 
   export FREETYPE_LIBS="-L${CINDER_LIB_DIR} -lcinder"
   export FREETYPE_CFLAGS="-I${CINDER_FREETYPE_INCLUDE_PATH}/freetype -I${CINDER_FREETYPE_INCLUDE_PATH}"
+  export ZLIB_LIBS="-L${CINDER_LIB_DIR}/lib -lcinder"
+  export ZLIB_CFLAGS="-I${CINDER_LIBZ_INCLUDE_PATH}/zlib-1.2.8"
   
 	echoFlags
   buildOSX
@@ -502,6 +467,7 @@ then
   CINDER_DIR=${CINDER_ROOT_DIR}
   CINDER_LIB_DIR=${CINDER_DIR}/lib/${lower_case}/x86_64/ogl/Release
   CINDER_FREETYPE_INCLUDE_PATH=${CINDER_DIR}/include/
+  CINDER_LIBZ_INCLUDE_PATH=${CINDER_DIR}/src/
 
   if [ ! -f "${CINDER_LIB_DIR}/libcinder.a" ]; then
     echo "Need to build release version of cinder to run this install. Cairo needs Freetype. Exiting!"
@@ -510,6 +476,8 @@ then
 
   export FREETYPE_LIBS="-L${CINDER_LIB_DIR} -lcinder"
   export FREETYPE_CFLAGS="-I${CINDER_FREETYPE_INCLUDE_PATH}/freetype -I${CINDER_FREETYPE_INCLUDE_PATH}"
+  export ZLIB_LIBS="-L${CINDER_LIB_DIR} -lcinder"
+  export ZLIB_CFLAGS="-I${CINDER_LIBZ_INCLUDE_PATH}/zlib-1.2.8"
  
   echoFlags 
 	buildLinux
